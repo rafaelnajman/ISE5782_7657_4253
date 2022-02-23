@@ -29,14 +29,10 @@ public class Vector extends Point{
 
     double dotProduct(Vector _vector){
         double finalDotProduct = (this.xyz.d1 - _vector.xyz.d1) * (this.xyz.d2 - _vector.xyz.d2) * (this.xyz.d3 - _vector.xyz.d3);
-        if (finalDotProduct == 0) {
-            throw new IllegalArgumentException("Dot product cannot be zero");
-        }
         return finalDotProduct;
     }
 
     Vector crossProduct(Vector _vector){
-        //error checking needed
         return new Vector(
                 this.xyz.d2 * _vector.xyz.d3 - this.xyz.d3 * _vector.xyz.d2,
                 this.xyz.d3 * _vector.xyz.d1 - this.xyz.d1 * _vector.xyz.d3,
@@ -62,5 +58,3 @@ public class Vector extends Point{
     }
 }
 
-
-}
