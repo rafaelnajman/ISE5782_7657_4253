@@ -11,7 +11,7 @@ public class Point {
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
-    Vector subtract(Point p) {
+    public Vector subtract(Point p) {
         return new Vector(xyz.subtract(p.xyz));
     }
     Point add(Vector v) {

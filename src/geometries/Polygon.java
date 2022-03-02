@@ -71,7 +71,7 @@ public class Polygon implements Geometry {
 		// the
 		// polygon is convex ("kamur" in Hebrew).
 		boolean positive = edge1.crossProduct(edge2).dotProduct(n) > 0;
-		for (var i = 1; i < vertices.length; ++i) {
+		for (int i = 1; i < vertices.length; ++i) { //check with dan later about var/int, why 1?
 			// Test that the point is in the same plane as calculated originally
 			if (!isZero(vertices[i].subtract(vertices[0]).dotProduct(n)))
 				throw new IllegalArgumentException("All vertices of a polygon must lay in the same plane");

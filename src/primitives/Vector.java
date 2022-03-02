@@ -27,12 +27,12 @@ public class Vector extends Point{
         return new Vector(this.xyz.scale(_scale));
     }
 
-    double dotProduct(Vector _vector){
+    public double dotProduct(Vector _vector){
         double finalDotProduct = (this.xyz.d1 - _vector.xyz.d1) * (this.xyz.d2 - _vector.xyz.d2) * (this.xyz.d3 - _vector.xyz.d3);
         return finalDotProduct;
     }
 
-    Vector crossProduct(Vector _vector){
+    public Vector crossProduct(Vector _vector){
         return new Vector(
                 this.xyz.d2 * _vector.xyz.d3 - this.xyz.d3 * _vector.xyz.d2,
                 this.xyz.d3 * _vector.xyz.d1 - this.xyz.d1 * _vector.xyz.d3,
@@ -42,7 +42,7 @@ public class Vector extends Point{
     double lengthSquared(){
         return this.xyz.d1 * this.xyz.d1 + this.xyz.d2 * this.xyz.d2 + this.xyz.d3 * this.xyz.d3;
     }
-    double length(){
+    public double length(){
         return sqrt(lengthSquared());
     }
 
