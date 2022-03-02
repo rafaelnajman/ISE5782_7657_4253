@@ -1,8 +1,8 @@
 package primitives;
 
 public class Point {
-    Double3 xyz;
 
+    Double3 xyz;
     // ***************** Constructors ********************** //
     public Point(double x, double y, double z) {
         xyz = new Double3(x, y, z);

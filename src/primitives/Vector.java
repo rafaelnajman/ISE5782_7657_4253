@@ -3,7 +3,8 @@ import java.lang.Math;
 
 import static java.lang.Math.sqrt;
 
-public class Vector extends Point{
+public class Vector extends Point {
+
     // ***************** Constructors ********************** //
     Vector (double x, double y, double z){
         super(x,y,z);
