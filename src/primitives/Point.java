@@ -14,7 +14,7 @@ public class Point {
     public Vector subtract(Point p) {
         return new Vector(xyz.subtract(p.xyz));
     }
-    Point add(Vector v) {
+    public Point add(Vector v) {
         return new Point(xyz.add(v.xyz));
     }
 

@@ -6,7 +6,7 @@ import static java.lang.Math.sqrt;
 public class Vector extends Point {
 
     // ***************** Constructors ********************** //
-    Vector (double x, double y, double z){
+    public Vector (double x, double y, double z){
         super(x,y,z);
         Double3 _point = new Double3(x,y,z);
         if (_point.equals(Double3.ZERO)) {
@@ -20,7 +20,7 @@ public class Vector extends Point {
         }
     }
 
-    Vector add(Vector _vector){
+    public Vector add(Vector _vector){
         return new Vector(this.xyz.add( _vector.xyz));
     }
 
@@ -40,14 +40,14 @@ public class Vector extends Point {
                 this.xyz.d1 * _vector.xyz.d2 - this.xyz.d2 * _vector.xyz.d1
         );
     }
-    double lengthSquared(){
+    public double lengthSquared(){
         return this.xyz.d1 * this.xyz.d1 + this.xyz.d2 * this.xyz.d2 + this.xyz.d3 * this.xyz.d3;
     }
     public double length(){
         return sqrt(lengthSquared());
     }
 
-    Vector normalize(){
+    public Vector normalize(){
         return new Vector(this.xyz.reduce(this.length()));
     }
 
