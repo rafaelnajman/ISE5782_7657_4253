@@ -29,7 +29,9 @@ public class Vector extends Point {
     }
 
     public double dotProduct(Vector _vector){
-        double finalDotProduct = (this.xyz.d1 - _vector.xyz.d1) * (this.xyz.d2 - _vector.xyz.d2) * (this.xyz.d3 - _vector.xyz.d3);
+        double finalDotProduct = (this.xyz.d1 * _vector.xyz.d1) +
+                (this.xyz.d2 * _vector.xyz.d2) +
+                (this.xyz.d3 * _vector.xyz.d3);
         return finalDotProduct;
     }
 
