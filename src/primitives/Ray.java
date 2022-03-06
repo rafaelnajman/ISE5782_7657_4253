@@ -3,6 +3,11 @@ package primitives;
 import java.util.Objects;
 
 public class Ray {
+
+    /**
+     * This class will execute a ray using a point and a vector
+     */
+
     Point p0;
     Vector dir;
 
