@@ -15,12 +15,12 @@ public class Polygon implements Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
-	protected List<Point> vertices;
+	protected final List<Point> vertices;
 	/**
 	 * Associated plane in which the polygon lays
 	 */
-	protected Plane plane;
-	private int size;
+	protected final Plane plane;
+	private final int size;
 
 	/**
 	 * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -47,11 +47,13 @@ public class Polygon implements Geometry {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
+		size = vertices.length;
+
 		// Generate the plane according to the first three vertices and associate the
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
 		plane = new Plane(vertices[0], vertices[1], vertices[2]);
-		if (vertices.length == 3)
+		if (size == 3)
 			return; // no need for more tests for a Triangle
 
 		Vector n = plane.getNormal();
@@ -71,7 +73,7 @@ public class Polygon implements Geometry {
 		// the
 		// polygon is convex ("kamur" in Hebrew).
 		boolean positive = edge1.crossProduct(edge2).dotProduct(n) > 0;
-		for (int i = 1; i < vertices.length; ++i) { //check with dan later about var/int, why 1?
+		for (var i = 1; i < vertices.length; ++i) {
 			// Test that the point is in the same plane as calculated originally
 			if (!isZero(vertices[i].subtract(vertices[0]).dotProduct(n)))
 				throw new IllegalArgumentException("All vertices of a polygon must lay in the same plane");
@@ -81,7 +83,6 @@ public class Polygon implements Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-		size = vertices.length;
 	}
 
 	@Override

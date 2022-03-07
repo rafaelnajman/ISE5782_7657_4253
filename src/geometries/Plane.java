@@ -13,6 +13,9 @@ public class Plane implements Geometry{
 
     /**
      * constructor for plane with 3 points and calculates the normal vector of the plane
+     * @param p0
+     * @param p1
+     * @param p2
      */
     public Plane(Point p0, Point p1, Point p2) {
         q0 = p0;
@@ -33,7 +36,7 @@ public class Plane implements Geometry{
      */
     @Override
     public Vector getNormal(Point p0){
-        return null;
+        return normal;
     }
 
     /**

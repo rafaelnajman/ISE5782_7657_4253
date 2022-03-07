@@ -7,7 +7,7 @@ public class Point {
      * It will provide functions that modify the point values
      */
 
-    Double3 xyz;
+    final protected Double3 xyz;
 
     /**
      * Constructor to initialize Point based object with its three number values
@@ -20,15 +20,15 @@ public class Point {
         xyz = new Double3(x, y, z);
     }
 
-
     /**
      * Constructor to initialize Point based object with Double parameter
      */
     public Point(Double3 xyz) {
         this.xyz = xyz;
     }
+
     /**
-    Function receives two points and returns vector connecting both points
+     * Function receives two points and returns vector connecting both points
      */
     public Vector subtract(Point p) {
         return new Vector(xyz.subtract(p.xyz));
@@ -48,6 +48,7 @@ public class Point {
                 "xyz=" + xyz +
                 '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
