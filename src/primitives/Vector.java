@@ -80,6 +80,10 @@ public class Vector extends Point {
         return  dotProduct(this);
     }
 
+    /**
+     * Function returns length of Vector
+     * @return length
+     */
     public double length() {
         return sqrt(lengthSquared());
     }
@@ -111,7 +115,5 @@ public class Vector extends Point {
                 "xyz=" + xyz +
                 '}';
     }
-
-
 }
 
