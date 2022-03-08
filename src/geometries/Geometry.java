@@ -3,7 +3,7 @@ package geometries;
 import primitives.*;
 
 /**
- * class will be abstract and shapes will extend it
+ *Interface to shapes extends from it
  */
 public interface Geometry {
 
