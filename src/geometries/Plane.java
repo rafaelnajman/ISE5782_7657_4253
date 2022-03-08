@@ -8,23 +8,24 @@ import primitives.Vector;
  */
 public class Plane implements Geometry{
 
-    Point q0;
-    Vector normal;
+    final Point q0;
+    final Vector normal;
 
     /**
-     * constructor for plane with 3 points and calculates the normal vector of the plane
-     * @param p0
-     * @param p1
-     * @param p2
+     * Constructor for plane with 3 points and calculates the normal vector of the plane
+     * @param p0 first point
+     * @param p1 second point
+     * @param p2 third point
      */
     public Plane(Point p0, Point p1, Point p2) {
         q0 = p0;
         normal = null;
     }
+
     /**
-     * constructor for plane with normal vector and a point on the plane
-     * @param p0
-     * @param v0
+     * Constructor for plane with normal vector and a point on the plane
+     * @param p0 point on the plane
+     * @param v0 Vector on the plane
      */
     public Plane(Point p0, Vector v0){
         q0 = p0;
@@ -32,7 +33,9 @@ public class Plane implements Geometry{
     }
 
     /**
-     * overrides the function of the parent class and calculates the normal vector of the plane
+     * Overrides the function of the parent class and calculates the normal vector of the plane
+     * @param p0 point on the plane
+     * @return normal Vector
      */
     @Override
     public Vector getNormal(Point p0){
@@ -41,6 +44,7 @@ public class Plane implements Geometry{
 
     /**
      * returns the normal vector of the plane
+     * @return normal Vector
      */
     public Vector getNormal(){
         return normal;

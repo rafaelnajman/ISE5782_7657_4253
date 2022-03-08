@@ -1,7 +1,16 @@
 package geometries;
 
 import primitives.*;
-public interface Geometry {
-    public Vector getNormal(Point p0);
 
+/**
+ * class will be abstract and shapes will extend it
+ */
+public interface Geometry {
+
+    /**
+     * Function will return normal Vector
+     * @param p0 Point from which we want the noemal Vector
+     * @return
+     */
+    public Vector getNormal(Point p0);
 }

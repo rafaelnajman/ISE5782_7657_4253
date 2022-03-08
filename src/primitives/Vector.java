@@ -87,16 +87,30 @@ public class Vector extends Point {
     /**
      * @return Vector of same direction with length = 1
      */
-
     public Vector normalize() {
         return new Vector(this.xyz.reduce(this.length()));
     }
 
+    /**
+     * Function returns true if Vectors are equal
+     * @param obj object we want to check
+     * @return boolean
+     */
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    /**
+     * Function returns object in string format
+     * @return string of object
+     */
     @Override
     public String toString() {
         return "Vector{" +
                 "xyz=" + xyz +
                 '}';
     }
+
+
 }
 

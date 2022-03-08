@@ -8,8 +8,8 @@ public class Ray {
      * This class will execute a ray using a point and a vector
      */
 
-    Point p0;
-    Vector dir;
+    final Point p0;
+    final Vector dir;
 
     // ***************** Constructors ********************** //
     public Ray(Point p0, Vector dir) {
