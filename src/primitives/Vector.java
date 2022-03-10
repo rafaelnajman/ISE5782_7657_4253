@@ -44,7 +44,7 @@ public class Vector extends Point {
      * @param _scale number to multiply Vector
      * @return New Vector
      */
-    Vector scale(double _scale) {
+    public Vector scale(double _scale) {
         return new Vector(this.xyz.scale(_scale));
     }
 
