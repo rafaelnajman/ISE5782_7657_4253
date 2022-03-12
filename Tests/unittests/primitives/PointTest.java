@@ -21,10 +21,7 @@ class PointTest {
     void testSubtract() {
         Point p1 = new Point(1, 2, 3);
         Vector p2 = new Vector(2, 3, 4);
-        Point p3 = new Point(-1, -1, -1);
-        assertEquals(p3, p1.subtract(p2));
+        Point p3 = new Vector(-1, -1, -1);
+        assertEquals(p3, p1.subtract(p2), "wrong subtract");
     }
-
-
-
 }
