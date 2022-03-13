@@ -23,7 +23,7 @@ public class Vector extends Point {
      * Constructor that receives Point
      * @param _point Point value to construct Vector
      */
-    Vector(Double3 _point) {
+    public Vector(Double3 _point) {
         super(_point);
         if (_point.equals(Double3.ZERO)) {
             throw new IllegalArgumentException("Vector cannot be zero vector");

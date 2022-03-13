@@ -27,13 +27,14 @@ public class Sphere implements Geometry{
      * @return normal
      */
     public Vector getNormal(Point p0){
-        return null;
+        return p0.subtract(center).normalize();
     }
 
     /**
      * function that returns center of sphere
      * @return center of sphere
      */
+
     public Point getCenter() {
         return center;
     }

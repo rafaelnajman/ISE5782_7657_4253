@@ -18,8 +18,12 @@ public class Plane implements Geometry{
      * @param p2 third point
      */
     public Plane(Point p0, Point p1, Point p2) {
+        if (p0.equals(p1) || p1.equals(p2) || p0.equals(p2))
+            throw new IllegalArgumentException("plane has at least 2 equal points");
         q0 = p0;
-        normal = null;
+        Vector v1 = p1.subtract(p2);
+        Vector v2 = p0.subtract(p1);
+        normal = v1.crossProduct(v2).normalize();
     }
 
     /**
@@ -29,7 +33,7 @@ public class Plane implements Geometry{
      */
     public Plane(Point p0, Vector v0){
         q0 = p0;
-        normal = v0;
+        normal = v0.normalize();
     }
 
     /**
