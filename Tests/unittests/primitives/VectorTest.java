@@ -65,6 +65,9 @@ class VectorTest {
                 "crossProduct() for parallel vectors does not throw an exception");
     }
 
+    /**
+     * Test method for {@link primitives.Vector#lengthSquared()}.
+     */
     @Test
     void lengthSquared() {
         Vector v1 = new Vector(1, 2, 3);
@@ -72,6 +75,9 @@ class VectorTest {
         assertEquals(14, length, 0.00001, "lengthSquared() wrong result");
     }
 
+    /**
+     * Test method for {@link primitives.Vector#length()}.
+     */
     @Test
     void length() {
         Vector v1 = new Vector(1, 2, 3);
@@ -79,6 +85,9 @@ class VectorTest {
         assertEquals(Math.sqrt(14), length, 0.00001, "length() wrong result");
     }
 
+    /**
+     * Test method for {@link primitives.Vector#normalize()}.
+     */
     @Test
     void testNormalize() {
         Vector v = new Vector(0, 3, 4);

@@ -1,4 +1,5 @@
 package primitives;
+import static java.lang.Math.sqrt;
 
 /**
  * This class will serve all classes that use point parameters
@@ -51,6 +52,11 @@ public class Point {
                 '}';
     }
 
+    /**
+     * function checks if object is equal to this point
+     * @param o object we compare to see if equals
+     * @return boolean confirming equality
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,5 +67,23 @@ public class Point {
         return xyz.equals(point.xyz);
     }
 
+    /**
+     * function determines distance between two points
+     * @param point other point
+     * @return distance
+     */
+    public double distance(Point point) {
+        return sqrt(this.distanceSquared(point));
+    }
+
+    /**
+     * function determines squared distance between two points
+     * @param point other point
+     * @return distance squared
+     */
+    public double distanceSquared(Point point){
+        return Math.pow((this.xyz.d1 - point.xyz.d1), 2) + Math.pow((this.xyz.d2 - point.xyz.d2), 2) +
+                            Math.pow((this.xyz.d3 - point.xyz.d3),2);
+    }
 }
 

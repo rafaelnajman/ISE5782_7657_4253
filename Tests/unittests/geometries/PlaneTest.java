@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlaneTest {
 
+    /**
+     * Test method for {@link geometries.Plane#Plane(primitives.Point, primitives.Point, primitives.Point)}.
+     */
     @Test
     void testConstructor(){
 
@@ -20,6 +23,9 @@ class PlaneTest {
 
     }
 
+    /**
+     * Test method for {@link geometries.Plane#getNormal(primitives.Point)}.
+     */
     @Test
     void getNormal() {
         Plane p1 = new Plane(new Point(0,0,0), new Point(0,5,0), new Point(5,0,0));
