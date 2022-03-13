@@ -28,7 +28,18 @@ public class Tube implements Geometry{
      * @return normal
      */
     public Vector getNormal(Point p0){
-        return null;
+        double t = p0.subtract(axisRay.getP0()).dotProduct(axisRay.getDir());
+        if(t == 0){
+            return p0.subtract(axisRay.getP0()).normalize();
+        }
+        Point p1 = axisRay.getP0().add(axisRay.getDir().scale(t));
+        try {
+            return p0.subtract(p1).normalize();
+        }
+        catch(IllegalArgumentException e)
+        {
+            throw e;
+        }
     }
 
     /**

@@ -20,11 +20,20 @@ public class Ray {
         this.dir = dir.normalize();
     }
 
+    public Point getP0() {
+        return p0;
+    }
+
+    public Vector getDir() {
+        return dir;
+    }
+
     /**
      * Function returns true if Rays are equal
      * @param o object we are comparing
      * @return boolean
      */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
