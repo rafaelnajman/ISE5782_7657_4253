@@ -24,10 +24,10 @@ public class Cylinder extends Tube{
 
     /**
      * function that returns normal
-     * @param p0 point from which we want to receive normal
+     * @param p point from which we want to receive normal
      * @return normal
      */
-    public Vector getNormal(Point p0){
+    public Vector getNormal(Point p){
         return null;
     }
 }

@@ -32,7 +32,7 @@ public class Vector extends Point {
 
     /**
      * Function that adds one Vector to the other
-     * @param _vector new Vector we want to add to current one
+     * @param _vector other Vector we want to add to current one
      * @return New Vector
      */
     public Vector add(Vector _vector) {
@@ -81,34 +81,26 @@ public class Vector extends Point {
     }
 
     /**
-     * Function returns length of Vector
-     * @return length
+     * Function calculates the length of Vector
+     * @return the length
      */
     public double length() {
         return sqrt(lengthSquared());
     }
 
     /**
-     * Function returns normalized Vector
-     * @return Vector of same direction with length = 1
+     * Function calculates new normalized vector (in the same direction as the original vector but of length 1)
+     * @return the new normalized vector
      */
     public Vector normalize() {
         return new Vector(this.xyz.reduce(this.length()));
     }
 
-    /**
-     * Function returns true if Vectors are equal
-     * @param obj object we want to check
-     * @return boolean
-     */
+    @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
 
-    /**
-     * Function returns object in string format
-     * @return string of object
-     */
     @Override
     public String toString() {
         return "Vector{" +

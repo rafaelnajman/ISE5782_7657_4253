@@ -42,10 +42,7 @@ public class Ray {
         return p0.equals(ray.p0) && dir.equals(ray.dir);
     }
 
-    /**
-     * Function returns string representation of Ray
-     * @return String
-     */
+
     @Override
     public String toString() {
         return "Ray{" +

@@ -8,9 +8,9 @@ import primitives.*;
 public interface Geometry {
 
     /**
-     * Function will return normal Vector
-     * @param p0 Point from which we want the noemal Vector
-     * @return
+     * Function will return normal Vector at a point on the geometry body
+     * @param p0 at a point on the geometry body
+     * @return the normal vector
      */
     public Vector getNormal(Point p0);
 }

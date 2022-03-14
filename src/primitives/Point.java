@@ -82,7 +82,8 @@ public class Point {
      * @return distance squared
      */
     public double distanceSquared(Point point){
-        return Math.pow((this.xyz.d1 - point.xyz.d1), 2) + Math.pow((this.xyz.d2 - point.xyz.d2), 2) +
+        double dx = this.xyz.d1 - point.xyz.d1;
+        return dx * dx + Math.pow((this.xyz.d2 - point.xyz.d2), 2) +
                             Math.pow((this.xyz.d3 - point.xyz.d3),2);
     }
 }

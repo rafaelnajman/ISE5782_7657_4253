@@ -16,10 +16,9 @@ public class Plane implements Geometry{
      * @param p0 first point
      * @param p1 second point
      * @param p2 third point
+     * @throws IllegalArgumentException when the points are on the same line
      */
     public Plane(Point p0, Point p1, Point p2) {
-        if (p0.equals(p1) || p1.equals(p2) || p0.equals(p2))
-            throw new IllegalArgumentException("plane has at least 2 equal points");
         q0 = p0;
         Vector v1 = p1.subtract(p2);
         Vector v2 = p0.subtract(p1);
