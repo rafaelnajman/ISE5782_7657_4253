@@ -30,15 +30,15 @@ public class Ray {
 
     /**
      * Function returns true if Rays are equal
-     * @param o object we are comparing
+     * @param _object object we are comparing
      * @return boolean
      */
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ray ray = (Ray) o;
+    public boolean equals(Object _object) {
+        if (this == _object) return true;
+        if (_object == null || getClass() != _object.getClass()) return false;
+        Ray ray = (Ray) _object;
         return p0.equals(ray.p0) && dir.equals(ray.dir);
     }
 

@@ -8,8 +8,8 @@ import primitives.Vector;
  */
 public class Plane implements Geometry{
 
-    final Point q0;
-    final Vector normal;
+    final private Point q0;
+    final private Vector normal;
 
     /**
      * Constructor for plane with 3 points and calculates the normal vector of the plane
