@@ -8,8 +8,8 @@ import static primitives.Util.*;
  */
 public class Tube implements Geometry {
 
-    final private Ray axisRay;
-    final private double radius;
+    final protected Ray axisRay;
+    final protected double radius;
 
     /**
      * Constructor for Tube class with a ray and a radius
