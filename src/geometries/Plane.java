@@ -1,7 +1,10 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
  * Plane class represents a plane in 3D space with normal vector and a point on the plane
@@ -34,23 +37,23 @@ public class Plane implements Geometry{
         q0 = p0;
         normal = v0.normalize();
     }
-
     /**
-     * Overrides the function of the parent class and calculates the normal vector of the plane
-     * @param p0 point on the plane
+     * returns the normal vector of the plane
      * @return normal Vector
      */
+
+    public Vector getNormal(){
+        return normal;
+    }
+
     @Override
     public Vector getNormal(Point p0){
         return normal;
     }
 
-    /**
-     * returns the normal vector of the plane
-     * @return normal Vector
-     */
-    public Vector getNormal(){
-        return normal;
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }
 

@@ -86,5 +86,15 @@ public class Point {
         return dx * dx + Math.pow((this.xyz.d2 - _point.xyz.d2), 2) +
                             Math.pow((this.xyz.d3 - _point.xyz.d3),2);
     }
+
+    public double getX() {
+        return xyz.d1;
+    }
+    public double getY() {
+        return xyz.d2;
+    }
+    public double getZ() {
+        return xyz.d3;
+    }
 }
 

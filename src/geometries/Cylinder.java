@@ -4,6 +4,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 /**
  * Class will be used to represent a Cylinder
  */
@@ -27,7 +29,13 @@ public class Cylinder extends Tube{
      * @param p point from which we want to receive normal
      * @return normal
      */
+    @Override
     public Vector getNormal(Point p){
+        return null;
+    }
+
+    @Override
+    public List<Point> findIntersections(Ray ray) {
         return null;
     }
 }

@@ -1,6 +1,9 @@
 package geometries;
 
 import primitives.*;
+
+import java.util.List;
+
 import static primitives.Util.*;
 
 /**
@@ -23,22 +26,6 @@ public class Tube implements Geometry {
     }
 
     /**
-     * function that returns normal
-     *
-     * @param p point from which we want to receive normal
-     * @return normal
-     */
-    public Vector getNormal(Point p) {
-        Point p0 = axisRay.getP0();
-        Vector dir = axisRay.getDir();
-
-        double t = p.subtract(p0).dotProduct(dir);
-        Point o = isZero(t) ? p0 : p0.add(dir.scale(t));
-
-        return p.subtract(o).normalize();
-    }
-
-    /**
      * getter function for axisRay
      *
      * @return axisRay
@@ -54,5 +41,20 @@ public class Tube implements Geometry {
      */
     public double getRadius() {
         return radius;
+    }
+
+    @Override
+    public Vector getNormal(Point p) {
+        Point p0 = axisRay.getP0();
+        Vector dir = axisRay.getDir();
+
+        double t = p.subtract(p0).dotProduct(dir);
+        Point o = isZero(t) ? p0 : p0.add(dir.scale(t));
+
+        return p.subtract(o).normalize();
+    }
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
     }
 }

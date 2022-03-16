@@ -1,7 +1,10 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
 
 /**
  * Class will be used to represent a sphere
@@ -22,15 +25,6 @@ public class Sphere implements Geometry{
     }
 
     /**
-     * function that returns normal
-     * @param p0 point from which we want to receive normal
-     * @return normal
-     */
-    public Vector getNormal(Point p0){
-        return p0.subtract(center).normalize();
-    }
-
-    /**
      * function that returns center of sphere
      * @return center of sphere
      */
@@ -47,5 +41,13 @@ public class Sphere implements Geometry{
         return radius;
     }
 
+    @Override
+    public Vector getNormal(Point p0){
+        return p0.subtract(center).normalize();
+    }
 
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 }
