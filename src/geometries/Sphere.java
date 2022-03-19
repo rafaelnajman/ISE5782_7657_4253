@@ -6,6 +6,8 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static java.lang.Math.sqrt;
+
 /**
  * Class will be used to represent a sphere
  */
@@ -48,6 +50,26 @@ public class Sphere implements Geometry{
 
     @Override
     public List<Point> findIntersections(Ray ray) {
+        Vector v = ray.getP0().subtract(center);
+        if(v.dotProduct(v) - radius * radius > 0){
+
+            Vector pointToCenter = center.subtract(ray.getP0());
+            double tm = pointToCenter.dotProduct(ray.getDir());
+            double distanceFromCenter = sqrt(pointToCenter.dotProduct(pointToCenter) - tm *tm);
+            if(distanceFromCenter >= radius){
+                return null;
+            }
+
+            double th = sqrt(radius * radius - distanceFromCenter * distanceFromCenter);
+
+            double firstDistance = tm - th;
+            double secondDistance = tm + th;
+
+            Point firstIntersection = ray.getP0().add(ray.getDir().scale(firstDistance));
+            Point secondIntersection = ray.getP0().add(ray.getDir().scale(secondDistance));
+
+            return List.of(firstIntersection, secondIntersection);
+        }
         return null;
     }
 }
