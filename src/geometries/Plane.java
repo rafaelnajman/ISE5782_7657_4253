@@ -60,7 +60,7 @@ public class Plane implements Geometry{
         if (q0.equals(ray.getP0())) return null;
         double t = Util.alignZero(q0.subtract(ray.getP0()).dotProduct(normal)) / (ray.getDir().dotProduct(normal));
         if (t <= 0) return null;
-        return List.of(ray.getP0().add(ray.getDir().scale(t)));
+        return List.of(ray.getPoint(t));
     }
 }
 

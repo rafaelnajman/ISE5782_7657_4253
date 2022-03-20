@@ -71,11 +71,11 @@ public class Sphere implements Geometry {
         if (firstDistance > 0 || secondDistance > 0) {
             List<Point> intersections = new java.util.ArrayList<Point>();
             if (Util.alignZero(firstDistance) > 0) {
-                Point firstIntersection = ray.getP0().add(ray.getDir().scale(firstDistance));
+                Point firstIntersection = ray.getPoint(firstDistance);
                 intersections.add(firstIntersection);
             }
             if (Util.alignZero(secondDistance) > 0) {
-                Point secondIntersection = ray.getP0().add(ray.getDir().scale(secondDistance));
+                Point secondIntersection = ray.getPoint(secondDistance);
                 intersections.add(secondIntersection);
             } else {
                 return null;
