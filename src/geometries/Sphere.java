@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 
 import java.util.List;
@@ -53,18 +54,13 @@ public class Sphere implements Geometry {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
-
-        Ray modifiedRay = null;
-        Vector v = ray.getP0().subtract(center);
-        if (v.dotProduct(v) - radius * radius <= 0){
-            modifiedRay = new Ray(ray.getP0().add(ray.getDir().scale(radius)), ray.getDir());
+        if (ray.getP0().equals(center)) {
+            List<Point> intersections = new java.util.ArrayList<Point>();
+            intersections.add(center.add(ray.getDir().scale(radius)));
+            return intersections;
         }
-        if (v.dotProduct(v) - radius * radius > 0){
-            modifiedRay = ray;
-        }
-        Vector pointToCenter = center.subtract(modifiedRay.getP0());
-        double tm = pointToCenter.dotProduct(modifiedRay.getDir());
+        Vector pointToCenter = center.subtract(ray.getP0());
+        double tm = pointToCenter.dotProduct(ray.getDir());
         double distanceFromCenter = sqrt(pointToCenter.dotProduct(pointToCenter) - tm * tm);
         if (distanceFromCenter >= radius) {
             return null;
@@ -72,16 +68,20 @@ public class Sphere implements Geometry {
         double th = sqrt(radius * radius - distanceFromCenter * distanceFromCenter);
         double firstDistance = tm - th;
         double secondDistance = tm + th;
-
-        Point firstIntersection = modifiedRay.getP0().add(modifiedRay.getDir().scale(firstDistance));
-        Point secondIntersection = modifiedRay.getP0().add(modifiedRay.getDir().scale(secondDistance));
-
-
-        if (v.dotProduct(v) - radius * radius <= 0){
-            return List.of(secondIntersection);
-        } else{
-            return List.of(firstIntersection, secondIntersection);
+        if (firstDistance > 0 || secondDistance > 0) {
+            List<Point> intersections = new java.util.ArrayList<Point>();
+            if (Util.alignZero(firstDistance) > 0) {
+                Point firstIntersection = ray.getP0().add(ray.getDir().scale(firstDistance));
+                intersections.add(firstIntersection);
+            }
+            if (Util.alignZero(secondDistance) > 0) {
+                Point secondIntersection = ray.getP0().add(ray.getDir().scale(secondDistance));
+                intersections.add(secondIntersection);
+            } else {
+                return null;
+            }
+            return intersections;
         }
+        return null;
     }
-
 }
