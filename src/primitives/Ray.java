@@ -28,12 +28,15 @@ public class Ray {
         return dir;
     }
 
+    public Point getPoint(double t) {
+        return p0.add(dir.scale(t));
+    }
+
     /**
      * Function returns true if Rays are equal
      * @param _object object we are comparing
      * @return boolean
      */
-
     @Override
     public boolean equals(Object _object) {
         if (this == _object) return true;
