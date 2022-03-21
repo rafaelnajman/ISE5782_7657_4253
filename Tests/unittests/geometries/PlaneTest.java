@@ -6,6 +6,9 @@ import primitives.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for Plane class
+ */
 class PlaneTest {
 
     /**

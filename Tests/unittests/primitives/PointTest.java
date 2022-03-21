@@ -5,6 +5,9 @@ import primitives.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for Point class
+ */
 class PointTest {
     /**
      * Test method for {@link primitives.Point#add(primitives.Vector)}.

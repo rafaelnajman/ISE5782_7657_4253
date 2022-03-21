@@ -10,6 +10,9 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for Triangle class
+ */
 class TriangleTest {
 
     @Test

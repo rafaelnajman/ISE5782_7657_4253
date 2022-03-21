@@ -78,8 +78,8 @@ public class Point {
      */
     public double distanceSquared(Point _point){
         double dx = this.xyz.d1 - _point.xyz.d1;
-        return dx * dx + Math.pow((this.xyz.d2 - _point.xyz.d2), 2) +
-                            Math.pow((this.xyz.d3 - _point.xyz.d3),2);
+        return dx * dx + (this.xyz.d2 - _point.xyz.d2)*(this.xyz.d2 - _point.xyz.d2) +
+                         (this.xyz.d3 - _point.xyz.d3)*(this.xyz.d3 - _point.xyz.d3);
     }
 
     /**
@@ -89,9 +89,19 @@ public class Point {
     public double getX() {
         return xyz.d1;
     }
+
+    /**
+     * Getter of Y coordinate value
+     * @return y coordinate value
+     */
     public double getY() {
         return xyz.d2;
     }
+
+    /**
+     * Getter of Z coordinate value
+     * @return z coordinate value
+     */
     public double getZ() {
         return xyz.d3;
     }

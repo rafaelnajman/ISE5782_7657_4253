@@ -6,7 +6,9 @@ import primitives.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
-
+/**
+ * Test class for Vector class.
+ */
 class VectorTest {
     /**
      * Test method for {@link primitives.Vector#add(primitives.Vector)}.

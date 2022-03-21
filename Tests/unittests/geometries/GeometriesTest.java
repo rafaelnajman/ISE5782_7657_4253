@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for Geometries class in package geometries
+ */
 class GeometriesTest {
 
     @Test
