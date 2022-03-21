@@ -45,14 +45,11 @@ public class Tube implements Geometry {
 
     @Override
     public Vector getNormal(Point p) {
-        Point p0 = axisRay.getP0();
-        Vector dir = axisRay.getDir();
-
-        double t = p.subtract(p0).dotProduct(dir);
-        Point o = isZero(t) ? p0 : p0.add(dir.scale(t));
-
+        double t = p.subtract(axisRay.getP0()).dotProduct(axisRay.getDir());
+        Point o = axisRay.getPoint(t);
         return p.subtract(o).normalize();
     }
+
     @Override
     public List<Point> findIntersections(Ray ray) {
         return null;

@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.Objects;
 
+import static primitives.Util.isZero;
+
 /**
  * This class will represent a ray using a point and a vector
  */
@@ -29,7 +31,7 @@ public class Ray {
     }
 
     public Point getPoint(double t) {
-        return p0.add(dir.scale(t));
+        return isZero(t) ? p0 : p0.add(dir.scale(t));
     }
 
     /**

@@ -29,8 +29,9 @@ public class Point {
     }
 
     /**
-     * Function receives two points and returns vector connecting both points
+     * Function receives two points and calculates vector connecting both points
      * @param p _point to subtract with this class _point
+     * @return new vector with subctract result
      */
     public Vector subtract(Point p) {
         return new Vector(xyz.subtract(p.xyz));
@@ -52,18 +53,12 @@ public class Point {
                 '}';
     }
 
-    /**
-     * function checks if object is equal to this _point
-     * @param _object object we compare to see if equals
-     * @return boolean confirming equality
-     */
     @Override
     public boolean equals(Object _object) {
         if (this == _object) return true;
         if (_object == null || getClass() != _object.getClass()) return false;
 
         Point _point = (Point) _object;
-
         return xyz.equals(_point.xyz);
     }
 
@@ -87,6 +82,10 @@ public class Point {
                             Math.pow((this.xyz.d3 - _point.xyz.d3),2);
     }
 
+    /**
+     * Getter of X coordinate value
+     * @return x coordinate value
+     */
     public double getX() {
         return xyz.d1;
     }

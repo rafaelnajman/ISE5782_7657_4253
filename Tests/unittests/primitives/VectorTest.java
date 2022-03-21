@@ -6,6 +6,7 @@ import primitives.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
+
 class VectorTest {
     /**
      * Test method for {@link primitives.Vector#add(primitives.Vector)}.
@@ -61,7 +62,7 @@ class VectorTest {
         assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
 
         // =============== Boundary Values Tests ==================
-        // TC11: test zero vector from cross-productof co-lined vectors
+        // TC11: test zero vector from cross-product of co-lined vectors
         Vector v3 = new Vector(-2, -4, -6);
         assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v3),
                 "crossProduct() for parallel vectors does not throw an exception");
