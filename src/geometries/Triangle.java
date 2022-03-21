@@ -6,6 +6,8 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+
 /**
  * Class will be used to represent a triangle
  */
@@ -25,27 +27,29 @@ public class Triangle extends Polygon {
     @Override
     public List<Point> findIntersections(Ray ray) {
         List<Point> result = this.plane.findIntersections(ray);
-        if (result == null){
-            return null;
-        }
+        if (result == null) return null;
+
         Point p0 = this.vertices.get(0);
         Point p1 = this.vertices.get(1);
         Point p2 = this.vertices.get(2);
         Point p = result.get(0);
-
 
         try {
             Vector n1 = p1.subtract(p0).crossProduct(p0.subtract(p));
             Vector n2 = p2.subtract(p1).crossProduct(p1.subtract(p));
             Vector n3 = p0.subtract(p2).crossProduct(p2.subtract(p));
 
-            if ((n1.dotProduct(n2) > 0 && n2.dotProduct(n3) > 0 && n3.dotProduct(n1) > 0) || (n1.dotProduct(n2) < 0 && n2.dotProduct(n3) < 0 && n3.dotProduct(n1) < 0)) {
-                return result;
-            }
-        } catch (IllegalArgumentException e) {
+            double n1n2 = alignZero(n1.dotProduct(n2));
+            if (n1n2 == 0) return null;
+            double n2n3 = alignZero(n2.dotProduct(n3));
+            if (n1n2 * n2n3 <= 0) return null; // must have same sign
+            double n3n1 = alignZero(n3.dotProduct(n1));
+            if (n1n2 * n3n1 <= 0) return null; // must have same sign
 
+            return result;
+        } catch (IllegalArgumentException ignore) {
+            return null;
         }
-        return null;
     }
 }
 

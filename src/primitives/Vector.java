@@ -97,8 +97,11 @@ public class Vector extends Point {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object _object) {
+        if (this == _object) return true;
+        if (_object == null || getClass() != _object.getClass()) return false;
+
+        return super.equals(_object);
     }
 
     @Override
