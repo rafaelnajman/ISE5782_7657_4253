@@ -24,6 +24,7 @@ public class Triangle extends Polygon {
 
     @Override
     public List<Point> findIntersections(Ray ray) {
+
         List<Point> result = this.plane.findIntersections(ray);
         if (result == null){
             return null;

@@ -11,6 +11,7 @@ import primitives.Vector;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TriangleTest {
+
     @Test
     void getNormal() {
         // Equivalence Partitions tests ======================================================================

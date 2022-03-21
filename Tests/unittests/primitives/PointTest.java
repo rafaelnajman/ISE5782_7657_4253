@@ -70,8 +70,8 @@ class PointTest {
     void testDistanceSquared(){
         // Equivalence Partitions tests ======================================================================
         // EP01 distance squared between two different points
-        Point p0 = new Point(0, 0, 0);
-        Point p1 = new Point(0, 0, 2);
+        Point p0 = new Point(0, 0, 1);
+        Point p1 = new Point(0, 0, 3);
         assertEquals(p0.distanceSquared(p1), 4, "distance of points is incorrect");
 
         // Boundary Value Analysis tests ======================================================================

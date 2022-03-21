@@ -55,7 +55,7 @@ class SphereTest {
                         "Ray starts after the sphere");
 
         // =============== Boundary Values Tests ==================
-/*
+
         // **** Group: Ray's line crosses the sphere (but not the center)
         // TC11: Ray starts at sphere and goes inside (1 points)
         Point p3 = new Point(1,1,0);

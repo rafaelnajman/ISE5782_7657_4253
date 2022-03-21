@@ -55,11 +55,20 @@ public class Plane implements Geometry{
     @Override
     public List<Point> findIntersections(Ray ray) {
         double checkOrthogonal = normal.dotProduct(ray.getDir());
-        if (Util.isZero(checkOrthogonal)) return null;
 
-        if (q0.equals(ray.getP0())) return null;
-        double t = Util.alignZero(q0.subtract(ray.getP0()).dotProduct(normal)) / (ray.getDir().dotProduct(normal));
+        //return null if ray is parallel to plane (orthogonal to normal vector)
+        if (Util.isZero(checkOrthogonal)) return null;
+        Point rayP0 = ray.getP0();
+
+        //return null if ray starts at reference point of plane (we do this as to not create a 0 vector)
+        if (q0.equals(rayP0)) return null;
+
+        //calculate distance of point from plane
+        double t = Util.alignZero(q0.subtract(rayP0).dotProduct(normal)) / (ray.getDir().dotProduct(normal));
+
+        //return null if point is behind start of ray
         if (t <= 0) return null;
+
         return List.of(ray.getPoint(t));
     }
 }
