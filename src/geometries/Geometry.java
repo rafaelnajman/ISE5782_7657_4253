@@ -5,7 +5,7 @@ import primitives.*;
 import java.util.List;
 
 /**
- *Interface to shapes extends from it
+ *Interface that shapes extend from it
  */
 public interface Geometry extends Intersectable {
     /**

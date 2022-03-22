@@ -40,6 +40,14 @@ public class Vector extends Point {
     }
 
     /**
+     * Function that subtracts one Vector from the other
+     * @param _vector other Vector we want to subtract from current one
+     * @return New Vector
+     */
+    public Vector subtract(Vector _vector) {
+        return new Vector(this.xyz.subtract(_vector.xyz));
+    }
+    /**
      * Function that will scale Vector
      * @param _scale number to multiply Vector
      * @return New Vector

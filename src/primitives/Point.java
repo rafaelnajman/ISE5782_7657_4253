@@ -31,7 +31,7 @@ public class Point {
     /**
      * Function receives two points and calculates vector connecting both points
      * @param p _point to subtract with this class _point
-     * @return new vector with subctract result
+     * @return new vector with subtract result
      */
     public Vector subtract(Point p) {
         return new Vector(xyz.subtract(p.xyz));
