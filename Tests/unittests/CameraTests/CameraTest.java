@@ -35,12 +35,12 @@ class CameraTest {
 		// ============ Equivalence Partitions Tests ==============
 		// EP01: 4X4 Inside (1,1)
 		assertEquals(new Ray(ZERO_POINT, new Vector(1, -1, -10)),
-				camera.setVPSize(8, 8).constructRay(4, 4, 1, 1), badRay);
+			camera.setVPSize(8, 8).constructRay(4, 4, 1, 1), badRay);
 
 		// =============== Boundary Values Tests ==================
 		// BV01: 3X3 Center (1,1)
 		assertEquals(new Ray(ZERO_POINT, new Vector(0, 0, -10)),
-				camera.setVPSize(6, 6).constructRay(3, 3, 1, 1), badRay);
+			camera.setVPSize(6, 6).constructRay(3, 3, 1, 1), badRay);
 
 		// BV02: 3X3 Center of Upper Side (0,1)
 		assertEquals(new Ray(ZERO_POINT, new Vector(0, -2, -10)),
@@ -65,7 +65,7 @@ class CameraTest {
 		//=============== Integration Tests ======================
 		//Integration 01: check camera ray intersections with sphere at point (0,0,-3) and radius 1
 
-		camera = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, -1, 0)).setVPDistance(1).setVPSize(3,3);
+		camera = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, 1, 0)).setVPDistance(1).setVPSize(3,3);
 		assertEquals(numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -3), 1)), camera), 2);
 
 		//Integration 02: check camera ray intersections with sphere at point (0,0,-2.5) and radius 2.5
@@ -104,7 +104,7 @@ class CameraTest {
 
 		//Integration 10: check camera ray intersections with triangle (2 intersections)
 		assertEquals(numberOfIntersections(3, 3, new Geometries(new Triangle(new Point(0, 20, -2), new Point(1, -1, -2), new Point(-1, -1, -2))),
-				camera), 1, "Integration 09: check camera ray intersections with triangle (2 intersections)");
+				camera), 1, "Integration 10: check camera ray intersections with triangle (2 intersections)");
 
 
 	}
