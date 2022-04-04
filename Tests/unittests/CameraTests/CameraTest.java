@@ -66,58 +66,66 @@ class CameraTest {
 		//Integration 01: check camera ray intersections with sphere at point (0,0,-3) and radius 1
 
 		camera = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, 1, 0)).setVPDistance(1).setVPSize(3,3);
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -3), 1)), camera), 2);
+		assertEquals(2,numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -3), 1)), camera),
+				"Camera ray intersections with sphere at point (0,0,-3) and radius 1");
 
 		//Integration 02: check camera ray intersections with sphere at point (0,0,-2.5) and radius 2.5
-		camera = new Camera(new Point(0.5,0,0), new Vector(0, 0, -1), new Vector(0, -1, 0)).setVPDistance(1).setVPSize(3,3);
+		camera = new Camera(new Point(0,0,0.5), new Vector(0, 0, -1), new Vector(0, -1, 0)).setVPDistance(1).setVPSize(3,3);
 
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -2.5), 2.5)), camera), 18,
+		assertEquals(18,numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -2.5), 2.5)), camera),
 				"Integration 02: check camera ray intersections with sphere at point (0,0,-2.5) and radius 2.5");
 
 		//Integration 03: check camera ray intersections with sphere at point (0,0,-2) and radius 2
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -2), 2)), camera), 10,
+		assertEquals(10,numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -2), 2)), camera),
 				"Integration 03: check camera ray intersections with sphere at point (0,0,-2) and radius 2");
 
 		//Integration 04: check camera ray intersections with sphere at point (0,0,-1) and radius 5
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -1), 5)), camera), 9,
+		assertEquals(9,numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, -1), 5)), camera),
 				"Integration 04: check camera ray intersections with sphere at point (0,0,-1) and radius 5");
 
 		//Integration 05: check camera ray intersections with sphere at point (0,0, 2) and camera pointing to other directions
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, 2), 0.5)), camera), 0,
+		assertEquals(0,numberOfIntersections(3, 3, new Geometries(new Sphere(new Point(0, 0, 2), 0.5)), camera),
 				"Integration 05: check camera ray intersections with sphere at point (0,0, 2) and camera pointing to other directions");
 
 		//Integration 06: check camera ray intersections with perpendicular plane
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Plane(new Point(0, 0, 0), new Vector(0, 0, 1))), camera), 9,
+		assertEquals(9,numberOfIntersections(3, 3, new Geometries(new Plane(new Point(0, 0, 0), new Vector(0, 0, 1))), camera),
 				"Integration 06: check camera ray intersections with perpendicular plane");
 
 		//Integration 07: check camera ray intersections with non-perpendicular plane
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Plane(new Point(0, 0, 0), new Vector(0, 1, 8))), camera), 9,
+		assertEquals(9,numberOfIntersections(3, 3, new Geometries(new Plane(new Point(0, 0, 0), new Vector(0, 1, 8))), camera),
 				"Integration 07: check camera ray intersections with non-perpendicular plane");
 
 		//Integration 08: check camera ray intersections with plane where lower rays don't intersect
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Plane(new Point(0, 0, 0), new Vector(0, 3, 1))), camera), 6,
+		assertEquals(6,numberOfIntersections(3, 3, new Geometries(new Plane(new Point(0, 0, 0), new Vector(0, 3, 1))), camera),
 				"Integration 08: check camera ray intersections with plane where lower rays don't intersect");
 
 		//Integration 09: check camera ray intersections with triangle (1 intersection)
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Triangle(new Point(0, 1, -2), new Point(1, -1, -2), new Point(-1, -1, -2))),
-						camera), 1, "Integration 09: check camera ray intersections with triangle");
+		assertEquals(1,numberOfIntersections(3, 3, new Geometries(new Triangle(new Point(0, 1, -2), new Point(1, -1, -2), new Point(-1, -1, -2))),
+						camera), "Integration 09: check camera ray intersections with triangle");
 
 		//Integration 10: check camera ray intersections with triangle (2 intersections)
-		assertEquals(numberOfIntersections(3, 3, new Geometries(new Triangle(new Point(0, 20, -2), new Point(1, -1, -2), new Point(-1, -1, -2))),
-				camera), 1, "Integration 10: check camera ray intersections with triangle (2 intersections)");
+		assertEquals(2,numberOfIntersections(3, 3, new Geometries(new Triangle(new Point(0, 20, -2), new Point(1, -1, -2), new Point(-1, -1, -2))),
+				camera), "Integration 10: check camera ray intersections with triangle (2 intersections)");
 
 
 	}
 
-	// helper function to calculate number of intersections
+	/**
+	 * This method checks the number of intersections between a ray and a list of geometries
+	 * @param nx the x resolution of the pixel
+	 * @param ny the y resolution of the pixel
+	 * @param geometries the list of geometries
+	 * @param camera the camera
+	 * @return the number of intersections
+	 */
 	private int numberOfIntersections (int nx, int ny, Geometries geometries, Camera camera) {
 		int numOfIntersections = 0;
 		for (int i = 0; i < nx; i++)
 			for (int j = 0; j < ny; j++) {
-				Ray ray = camera.constructRay(i, j, nx, ny);
+				Ray ray = camera.constructRay(nx, ny, j, i);
 				List<Point> intersections = geometries.findIntersections(ray);
 				if (intersections != null)
-					numOfIntersections += geometries.findIntersections(ray).size();
+					numOfIntersections += intersections.size();
 			}
 		return numOfIntersections;
 	}
