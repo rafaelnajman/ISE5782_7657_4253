@@ -63,8 +63,24 @@ public class Camera {
     }
 
     public Ray constructRay(int nX, int nY, int j, int i){
-        return null;
-    }
+        Point pC = position.add(vTo.scale(distance));
 
+        double rY = height/nY;
+        double rX = width/nX;
+
+        double Yi = -(i - (rY - 1)/2) * rY;
+        double Xj = (j - (rX - 1) / 2) * rX;
+        Point Pij = pC;
+
+        if(Yi != 0) Pij = Pij.add(vUp.scale(Yi));
+        if(Xj != 0) Pij = Pij.add(vRight.scale(Xj));
+
+        try{
+            return new Ray(position, Pij.subtract(position));
+        }catch (Exception e)
+        {
+            throw e;
+        }
+    }
 
 }

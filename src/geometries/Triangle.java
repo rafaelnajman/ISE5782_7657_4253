@@ -38,7 +38,7 @@ public class Triangle extends Polygon {
             Vector n1 = p1.subtract(p0).crossProduct(p0.subtract(p));
             Vector n2 = p2.subtract(p1).crossProduct(p1.subtract(p));
             Vector n3 = p0.subtract(p2).crossProduct(p2.subtract(p));
-
+            
             double n1n2 = alignZero(n1.dotProduct(n2));
             if (n1n2 == 0) return null;
             double n2n3 = alignZero(n2.dotProduct(n3));
@@ -47,9 +47,11 @@ public class Triangle extends Polygon {
             if (n1n2 * n3n1 <= 0) return null; // must have same sign
 
             return result;
+
         } catch (IllegalArgumentException ignore) {
             return null;
         }
+
     }
 }
 
