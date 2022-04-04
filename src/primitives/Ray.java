@@ -1,5 +1,6 @@
 package primitives;
 
+import java.util.List;
 import java.util.Objects;
 
 import static primitives.Util.isZero;
@@ -51,6 +52,25 @@ public class Ray {
         return isZero(t) ? p0 : p0.add(dir.scale(t));
     }
 
+    /**
+     * Calculate the closest point in list of intersections
+     * @param points list of points
+     * @return closest point
+     */
+    public Point findClosestPoint(List<Point> points) {
+        if (points == null || points.isEmpty())
+            return null;
+        Point closest = null;
+        double minDistance = Double.MAX_VALUE;
+        for (Point p : points) {
+            double distance = p.distance(p0);
+            if (distance < minDistance) {
+                closest = p;
+                minDistance = distance;
+            }
+        }
+        return closest;
+    }
     @Override
     public boolean equals(Object _object) {
         if (this == _object) return true;
