@@ -6,7 +6,7 @@ import primitives.*;
  * class AmbientLight
  */
 public class AmbientLight {
-    private Color intensity;
+    private final Color intensity;
 
     /**
      * constructor that receives a color and sets the intensity based in kA

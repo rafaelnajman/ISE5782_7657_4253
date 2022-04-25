@@ -1,6 +1,5 @@
 package primitives;
 
-import java.util.Objects;
 import static java.lang.Math.sqrt;
 
 /**

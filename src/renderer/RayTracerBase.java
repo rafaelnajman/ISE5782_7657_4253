@@ -7,7 +7,7 @@ import scene.Scene;
  * class that holds scene and other functions
  */
 public abstract class RayTracerBase {
-    protected Scene scene;
+    protected final Scene scene;
 
     /**
      * function that sets scene

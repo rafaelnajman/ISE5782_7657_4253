@@ -48,7 +48,7 @@ public class RenderTests {
 
 	/**
 	 * Test for XML based scene - for bonus
-
+	 */
 	@Test
 	public void basicRenderXml() {
 		Scene scene = new Scene("XML Test scene");
@@ -63,5 +63,5 @@ public class RenderTests {
 		camera.renderImage();
 		camera.printGrid(100, new Color(java.awt.Color.YELLOW));
 		camera.writeToImage();
-	}*/
+	}
 }
