@@ -7,6 +7,9 @@ import primitives.Vector;
 
 import java.util.MissingResourceException;
 
+/**
+ * camera class
+ */
 public class Camera {
     private Point position;
     private Vector vTo;
@@ -93,8 +96,8 @@ public class Camera {
 
     /**
      * function that sets the width and height
-     * @param width
-     * @param height
+     * @param width of the view plane
+     * @param height of the view plane
      * @return this
      */
     public Camera setVPSize(double width, double height) {
@@ -113,16 +116,25 @@ public class Camera {
         return this;
     }
 
+    /**
+     * function that sets imageWriter
+     * @param imageWriter
+     * @return camera
+     */
     public Camera setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     * function that sets the rayTracer
+     * @param rayTracer
+     * @return camera
+     */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
-
 
     /**
      * function that gets the ray from the camera to the point
@@ -153,6 +165,9 @@ public class Camera {
         }
     }
 
+    /**
+     * function that gets the color of the pixel and renders in to image
+     */
     public void renderImage(){
         if(position == null || vTo == null || vUp == null || vRight == null || distance == 0 || height == 0 || width == 0 || imageWriter == null || rayTracer == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
@@ -165,6 +180,11 @@ public class Camera {
 
     }
 
+    /**
+     * function that prints grid on top of image
+     * @param interval of grid
+     * @param color of grid
+     */
     public void printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
@@ -175,12 +195,24 @@ public class Camera {
             }
         }
     }
+
+    /**
+     * function that calls write to image function
+     */
     public void writeToImage() {
         if (imageWriter == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
             imageWriter.writeToImage();
     }
 
+    /**
+     * function that casts ray and returns color
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param i the x coordinate
+     * @param j the y coordinate
+     * @return the color
+     */
     private Color castRay(int nX, int nY, int i, int j){
         Ray tempRay = constructRay(nX, nY, j, i);
         return rayTracer.traceRay(tempRay);

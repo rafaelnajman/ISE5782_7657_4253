@@ -7,11 +7,20 @@ import scene.Scene;
 
 import java.util.List;
 
+/**
+ * RayTracerBasic class that extends the RayTracer class
+ */
 public class RayTracerBasic extends RayTracerBase {
+
+    /**
+     * constructor that calls super constructor
+     * @param scene
+     */
     public RayTracerBasic(Scene scene) {
         super(scene);
     }
-    //trace ray and return color
+
+@Override
     public Color traceRay(Ray ray){
         List<Point>  intersections = scene.geometries.findIntersections(ray);
         if (intersections == null)
@@ -21,6 +30,11 @@ public class RayTracerBasic extends RayTracerBase {
 
     }
 
+    /**
+     * function calculates color of point
+     * @param p0 point
+     * @return color
+     */
     private Color calcColor (Point p0){
         return scene.ambientLight.getIntensity();
     }
