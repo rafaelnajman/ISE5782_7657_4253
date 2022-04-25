@@ -4,10 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import lighting.AmbientLight;
 import geometries.*;
+import org.xml.sax.SAXException;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+
+import static renderer.XML.sceneParser;
 import static unittests.renderer.CameraTest.ZERO_POINT;
 
 /**
@@ -28,7 +33,7 @@ public class RenderTests {
 						                          new Double3(1,1,1))) //
 				.setBackground(new Color(75, 127, 90));
 
-		scene.geometries.add(new Sphere(new Point(0, 0, -100), 50),
+		scene.geometries.add(new Sphere( new Point(0, 0, -100), 50),
 				new Triangle(new Point(-100, 0, -100), new Point(0, 100, -100), new Point(-100, 100, -100)), // up
 																													// left
 				new Triangle(new Point(-100, 0, -100), new Point(0, -100, -100), new Point(-100, -100, -100)), // down
@@ -50,10 +55,13 @@ public class RenderTests {
 	 * Test for XML based scene - for bonus
 	 */
 	@Test
-	public void basicRenderXml() {
+	public void basicRenderXml() throws ParserConfigurationException, IOException, SAXException {
 		Scene scene = new Scene("XML Test scene");
 		// enter XML file name and parse from XML file into scene object
 		// ...
+
+
+		sceneParser(scene, "basicRenderTestTwoColors.xml");
 
 		Camera camera = new Camera(ZERO_POINT, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setVPDistance(100) //
@@ -64,4 +72,5 @@ public class RenderTests {
 		camera.printGrid(100, new Color(java.awt.Color.YELLOW));
 		camera.writeToImage();
 	}
+
 }
