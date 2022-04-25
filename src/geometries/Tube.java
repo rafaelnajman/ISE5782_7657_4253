@@ -9,7 +9,7 @@ import static primitives.Util.*;
 /**
  * Class will be used to represent a Tube
  */
-public class Tube implements Geometry {
+public class Tube extends Geometry {
 
     final protected Ray axisRay;
     final protected double radius;

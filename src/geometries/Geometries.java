@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Class represents a list of geometries in the scene
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
     private final List<Intersectable> geometries = new LinkedList<>();
 
     //use LinkedList instead of ArrayList for better performance in the future (if needed) - O(1) instead of O(n) for add and remove operations

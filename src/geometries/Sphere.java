@@ -13,7 +13,7 @@ import static primitives.Util.alignZero;
 /**
  * Class will be used to represent a sphere
  */
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
 
     final private Point center;
     final private double radius;

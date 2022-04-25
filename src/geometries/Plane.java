@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Plane class represents a plane in 3D space with normal vector and a point on the plane
  */
-public class Plane implements Geometry{
+public class Plane extends Geometry{
 
     final private Point q0;
     final private Vector normal;
