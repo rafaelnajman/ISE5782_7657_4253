@@ -56,29 +56,6 @@ public class Sphere extends Geometry {
         return p0.subtract(center).normalize();
     }
 
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-
-        Vector pointToCenter;
-        try {
-            pointToCenter = center.subtract(ray.getP0());
-        } catch (IllegalArgumentException ignore) {
-            return List.of(ray.getPoint(radius));
-        }
-
-        double tm = pointToCenter.dotProduct(ray.getDir());
-        double distanceFromCenterSquared = pointToCenter.dotProduct(pointToCenter) - tm * tm;
-        double thSquared = radiusSquared - distanceFromCenterSquared;
-        //check that ray crosses area of sphere, if not then return null
-        if (alignZero(thSquared) <= 0) return null;
-
-        double th = sqrt(thSquared);
-        double secondDistance = tm + th;
-        if (alignZero(secondDistance) <= 0) return null;
-        double firstDistance = tm - th;
-        return firstDistance <= 0 ? List.of(ray.getPoint(secondDistance)) //
-                : List.of(ray.getPoint(firstDistance),ray.getPoint(secondDistance));
-    }
 
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
@@ -101,6 +78,6 @@ public class Sphere extends Geometry {
         if (alignZero(secondDistance) <= 0) return null;
         double firstDistance = tm - th;
         return firstDistance <= 0 ? List.of(new GeoPoint(this, ray.getPoint(secondDistance))) //
-                : List.of(new GeoPoint(this,ray.getPoint(firstDistance)),new GeoPoint(this,ray.getPoint(secondDistance)));
+                : List.of(new GeoPoint(this, ray.getPoint(firstDistance)), new GeoPoint(this, ray.getPoint(secondDistance)));
     }
 }
