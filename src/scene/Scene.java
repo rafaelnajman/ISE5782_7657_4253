@@ -6,13 +6,14 @@ import primitives.*;
 
 public class Scene {
     public String name;
-    public Color background;
+    public Color background = Color.BLACK;
     public AmbientLight ambientLight;
     public Geometries geometries;
 
     public Scene(String name){
         this.name = name;
         geometries = new Geometries();
+
     }
     public Scene setBackground(Color background){
         this.background = background;

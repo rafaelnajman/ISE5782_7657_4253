@@ -15,9 +15,11 @@ public class Geometries extends Intersectable {
     //use LinkedList instead of ArrayList for better performance in the future (if needed) - O(1) instead of O(n) for add and remove operations
     public Geometries() {
     }
+
     public Geometries(Intersectable... geometries) {
         add(geometries);
     }
+
     public void add(Intersectable... geometries) {
         this.geometries.addAll(List.of(geometries));
     }
@@ -34,6 +36,23 @@ public class Geometries extends Intersectable {
             }
         }
         return intersections;
+    }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        //TODO: implement
+        List<GeoPoint> intersections = null;
+        for (Intersectable geometry : geometries) {
+            var temp = geometry.findGeoIntersections(ray);
+            if (temp != null) {
+                if (intersections == null)
+                    intersections = new LinkedList<>();
+                intersections.addAll(temp);
+            }
+        }
+        return intersections;
+
+
     }
 
 }

@@ -71,6 +71,25 @@ public class Plane extends Geometry{
         //return null if point is behind start of ray
         return t <= 0 ? null : List.of(ray.getPoint(t));
     }
+
+    @Override
+    protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        Vector u;
+        try {
+            u = q0.subtract(ray.getP0());
+        }catch (IllegalArgumentException ignore) {
+            //return null if ray starts at reference point of plane (we do this as to not create a 0 vector)
+            return null;
+        }
+
+        double denominator = normal.dotProduct(ray.getDir());
+        //return null if ray is parallel to plane (orthogonal to normal vector)
+        if (Util.isZero(denominator)) return null;
+
+        //calculate distance of point from plane
+        double t = Util.alignZero(u.dotProduct(normal) / denominator);
+        //return null if point is behind start of ray
+        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));    }
 }
 
 

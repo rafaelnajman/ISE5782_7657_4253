@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  *Interface that shapes extend from it
  */
@@ -29,4 +31,7 @@ public abstract class Geometry extends Intersectable {
         emission = _emission;
         return this;
     }
+
+
+
 }
