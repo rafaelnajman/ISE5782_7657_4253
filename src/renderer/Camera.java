@@ -162,7 +162,7 @@ public class Camera {
         double rY = height / nY;
         double rX = width / nX;
 
-        double yI= -(i - (nY - 1d) / 2) * rY;
+        double yI = -(i - (nY - 1d) / 2) * rY;
         double jX = (j - (nX - 1d) / 2) * rX;
         Point Pij = pC;
 
@@ -175,7 +175,7 @@ public class Camera {
     /**
      * function that gets the color of the pixel and renders in to image
      */
-    public void renderImage() {
+    public Camera renderImage() {
         if (position == null || vTo == null || vUp == null || vRight == null || distance == 0 || height == 0 || width == 0 || imageWriter == null || rayTracer == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
         for (int i = 0; i < imageWriter.getNx(); i++) {
@@ -184,7 +184,7 @@ public class Camera {
                 imageWriter.writePixel(j, i, this.castRay(imageWriter.getNx(), imageWriter.getNy(), i, j));
             }
         }
-
+        return this;
     }
 
     /**
