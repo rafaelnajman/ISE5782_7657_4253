@@ -12,9 +12,12 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
 
+/**
+ * This class is responsible for parsing the XML file and creating the scene
+ */
 public class XML {
     public static void sceneParser(Scene scene, String fileName) throws ParserConfigurationException, IOException, SAXException {
-
+        //build the parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 
@@ -29,7 +32,7 @@ public class XML {
         scene.setAmbientLight(new AmbientLight(parseColor(ambient.getAttribute("color")), new Double3(1d, 1d, 1d)));
 
         var geoLst = root.getChildNodes().item(3).getChildNodes();
-
+        //parse the geometries
         Geometries geometries = new Geometries();
 
         for (int i = 0; i < geoLst.getLength(); i++) {
@@ -58,6 +61,12 @@ public class XML {
 
     }
 
+    /**
+     * This method parses a point from a string
+     *
+     * @param toParse the string to parse
+     * @return the point parsed
+     */
     public static Point parsePoint(String toParse) {
         var parsed = toParse.split(" ");
         return new Point(Integer.parseInt(parsed[0]),
@@ -66,6 +75,12 @@ public class XML {
 
     }
 
+    /**
+     * This method parses a color from a string
+     *
+     * @param toParse the string to parse
+     * @return the color parsed
+     */
     public static Color parseColor(String toParse) {
         var parsed = toParse.split(" ");
         return new Color(Integer.parseInt(parsed[0]),

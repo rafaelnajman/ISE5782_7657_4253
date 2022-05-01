@@ -16,10 +16,18 @@ public class Geometries extends Intersectable {
     public Geometries() {
     }
 
+    /**
+     * constructor for the class
+     * @param geometries list of geometries to add
+     */
     public Geometries(Intersectable... geometries) {
         add(geometries);
     }
 
+    /**
+     * add geometries to the list
+     * @param geometries list of geometries to add
+     */
     public void add(Intersectable... geometries) {
         this.geometries.addAll(List.of(geometries));
     }

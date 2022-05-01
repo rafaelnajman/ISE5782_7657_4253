@@ -1,6 +1,7 @@
 package renderer;
 
 import lighting.LightSource;
+import lighting.SpotLight;
 import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
@@ -71,6 +72,7 @@ public class RayTracerBasic extends RayTracerBase {
         Vector reflectedVector = lightVector.subtract(normal.scale(2 * nl));
         double max = Math.max(0, vector.scale(-1).dotProduct(reflectedVector));
         return material.kS.scale(Math.pow(max, material.nShininess));
+
     }
 
     /**
