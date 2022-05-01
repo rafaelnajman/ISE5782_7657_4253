@@ -19,6 +19,7 @@ public class Scene {
         this.name = name;
         geometries = new Geometries();
         lights = new LinkedList<>();
+        ambientLight = new AmbientLight();
     }
 
     public Scene setBackground(Color background) {
