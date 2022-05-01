@@ -178,10 +178,12 @@ public class Camera {
     public Camera renderImage() {
         if (position == null || vTo == null || vUp == null || vRight == null || distance == 0 || height == 0 || width == 0 || imageWriter == null || rayTracer == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
         for (int i = 0; i < imageWriter.getNx(); i++) {
             for (int j = 0; j < imageWriter.getNy(); j++) {
-                Ray ray = constructRay(imageWriter.getNx(), imageWriter.getNy(), j, i);
-                imageWriter.writePixel(j, i, this.castRay(imageWriter.getNx(), imageWriter.getNy(), i, j));
+                Ray ray = constructRay(nX, nY, j, i);
+                imageWriter.writePixel(j, i, this.castRay(nX, nY, i, j));
             }
         }
         return this;

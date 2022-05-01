@@ -69,6 +69,9 @@ class PointTest {
         assertEquals(p0.distance(p0), 0, "distance of point to itself is not 0");
     }
 
+    /**
+     * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
+     */
     @Test
     void testDistanceSquared(){
         // Equivalence Partitions tests ======================================================================
