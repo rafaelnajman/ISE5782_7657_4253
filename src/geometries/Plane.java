@@ -10,13 +10,14 @@ import java.util.List;
 /**
  * Plane class represents a plane in 3D space with normal vector and a point on the plane
  */
-public class Plane extends Geometry{
+public class Plane extends Geometry {
 
     final private Point q0;
     final private Vector normal;
 
     /**
      * Constructor for plane with 3 points and calculates the normal vector of the plane
+     *
      * @param p0 first point
      * @param p1 second point
      * @param p2 third point
@@ -31,24 +32,26 @@ public class Plane extends Geometry{
 
     /**
      * Constructor for plane with normal vector and a point on the plane
+     *
      * @param p0 point on the plane
      * @param v0 Vector on the plane
      */
-    public Plane(Point p0, Vector v0){
+    public Plane(Point p0, Vector v0) {
         q0 = p0;
         normal = v0.normalize();
     }
+
     /**
      * returns the normal vector of the plane
+     *
      * @return normal Vector
      */
-
-    public Vector getNormal(){
+    public Vector getNormal() {
         return normal;
     }
 
     @Override
-    public Vector getNormal(Point p0){
+    public Vector getNormal(Point p0) {
         return normal;
     }
 
@@ -58,7 +61,7 @@ public class Plane extends Geometry{
         Vector u;
         try {
             u = q0.subtract(ray.getP0());
-        }catch (IllegalArgumentException ignore) {
+        } catch (IllegalArgumentException ignore) {
             //return null if ray starts at reference point of plane (we do this as to not create a 0 vector)
             return null;
         }
@@ -70,7 +73,8 @@ public class Plane extends Geometry{
         //calculate distance of point from plane
         double t = Util.alignZero(u.dotProduct(normal) / denominator);
         //return null if point is behind start of ray
-        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));    }
+        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
+    }
 }
 
 

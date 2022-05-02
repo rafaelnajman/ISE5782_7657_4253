@@ -2,10 +2,8 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
-import primitives.Util;
 import primitives.Vector;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.sqrt;

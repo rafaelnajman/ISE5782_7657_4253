@@ -2,7 +2,6 @@ package geometries;
 
 import primitives.*;
 
-import java.util.List;
 
 /**
  * Interface that shapes extend from it

@@ -16,6 +16,16 @@ import java.io.*;
  * This class is responsible for parsing the XML file and creating the scene
  */
 public class XML {
+
+    /**
+     * function parses XML file
+     *
+     * @param scene    the scene to add the objects to
+     * @param fileName file that contains XML
+     * @throws ParserConfigurationException exception
+     * @throws IOException                  exception
+     * @throws SAXException                 exception
+     */
     public static void sceneParser(Scene scene, String fileName) throws ParserConfigurationException, IOException, SAXException {
         //build the parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -54,11 +64,26 @@ public class XML {
                 geometries.add(new Sphere(center, radius));
             }
 
+            if (geo.getNodeName() == "plane") {
+                var el = (Element) geo;
+                Point p0 = parsePoint(el.getAttribute("point"));
+                Vector v = parseVector(el.getAttribute("vector"));
+                geometries.add(new Plane(p0, v));
+            }
+
         }
-
         scene.setGeometries(geometries);
+    }
 
-
+    /**
+     * This method parses a vector from a string
+     *
+     * @param toParse the string to parse
+     * @return the point parsed
+     */
+    private static Vector parseVector(String toParse) {
+        var parsed = toParse.split(" ");
+        return new Vector(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
     }
 
     /**
@@ -69,9 +94,7 @@ public class XML {
      */
     public static Point parsePoint(String toParse) {
         var parsed = toParse.split(" ");
-        return new Point(Integer.parseInt(parsed[0]),
-                Integer.parseInt(parsed[1]),
-                Integer.parseInt(parsed[2]));
+        return new Point(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
 
     }
 
@@ -83,9 +106,7 @@ public class XML {
      */
     public static Color parseColor(String toParse) {
         var parsed = toParse.split(" ");
-        return new Color(Integer.parseInt(parsed[0]),
-                Integer.parseInt(parsed[1]),
-                Integer.parseInt(parsed[2]));
+        return new Color(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]), Integer.parseInt(parsed[2]));
 
     }
 }
