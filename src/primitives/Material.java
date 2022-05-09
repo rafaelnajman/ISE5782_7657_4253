@@ -5,7 +5,17 @@ package primitives;
  */
 public class Material {
 
-    public Double3 kD = new Double3(0, 0, 0), kS = new Double3(0, 0, 0);
+    /**
+     * kD - diffuse coefficient
+     * kS - specular coefficient
+     * kR - reflection coefficient
+     * kT - transparency coefficient
+     */
+    public Double3  kD = new Double3(0, 0, 0),
+                    kS = new Double3(0, 0, 0),
+                    kR = new Double3(0, 0, 0),
+                    kT = new Double3(0, 0, 0);
+
     public int nShininess = 0;
 
     /**
@@ -45,6 +55,26 @@ public class Material {
      */
     public Material setKs(double kS) {
         this.kS = new Double3(kS);
+        return this;
+    }
+
+    /**
+     * setter for kR
+     * @param kR new Double3 kR for the material
+     * @return this material
+     */
+    public Material setKr(Double3 kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * setter for kR
+     * @param kR new double kR for the material
+     * @return this material
+     */
+    public Material setKr(double kR) {
+        this.kR = new Double3(kR);
         return this;
     }
 

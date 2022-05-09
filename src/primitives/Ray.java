@@ -11,6 +11,9 @@ import static primitives.Util.isZero;
  */
 public class Ray {
 
+    //value to move geoPoint, so it does not shade on itself
+    private static final double DELTA = 0.1;
+
     final private Point p0;
     final private Vector dir;
 
@@ -23,6 +26,20 @@ public class Ray {
     public Ray(Point p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalize();
+
+    }
+
+    /**
+     * Constructor that moves the ray by DELTA
+     * @param p0 point
+     * @param direction direction
+     * @param normal normal
+     */
+    public Ray(Point p0, Vector direction, Vector normal) {
+        direction.normalize();
+        Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : - DELTA);
+        this.p0 = p0.add(delta);
+        this.dir = direction;
     }
 
     /**

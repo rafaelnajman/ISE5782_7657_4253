@@ -18,8 +18,8 @@ import static primitives.Util.alignZero;
  */
 public class RayTracerBasic extends RayTracerBase {
 
-    //value to move geoPoint, so it does not shade on itself
-    private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
 
     /**
      * constructor that calls super constructor
@@ -112,10 +112,8 @@ public class RayTracerBasic extends RayTracerBase {
      * @return true if unshaded
      */
     private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource lightSource, double nv) {
-        Vector lightDirection = l.scale(-1); // from point to light source
-        Vector epsVector = n.scale(nv < 0 ? DELTA : -DELTA);
-        Point point = gp.point.add(epsVector);
-        Ray lightRay = new Ray(point, lightDirection);
+
+        Ray lightRay = new Ray(gp.point, l.scale(-1), n);
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
 
         if (intersections != null) {
@@ -127,5 +125,41 @@ public class RayTracerBasic extends RayTracerBase {
         }
 
         return true;
+    }
+
+    /**
+     * function will construct a reflection ray
+     *
+     * @param gp     geometry point to check
+     * @param normal normal vector
+     * @param vector direction of ray to point
+     * @return reflection ray
+     */
+    private Ray constructReflectionRay(GeoPoint gp, Vector normal, Vector vector) {
+        Vector reflectedVector = vector.subtract(normal.scale(2 * vector.dotProduct(normal)));
+        return new Ray(gp.point, reflectedVector, normal);
+    }
+
+    /**
+     * function will construct a refraction ray
+     *
+     * @param gp     geometry point to check
+     * @param normal normal vector
+     * @param vector direction of ray to point
+     * @return refraction ray
+     */
+    private Ray constructRefractionRay(GeoPoint gp, Vector normal, Vector vector) {
+        return new Ray(gp.point, vector, normal);
+    }
+
+    /**
+     * Find the closest intersection point with a ray.
+     * @param ray The ray to checks intersections with.
+     * @return The closest intersection point with the ray.
+     */
+    private GeoPoint findClosestIntersection(Ray ray) {
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);
+        if (intersections == null) return null;
+        return ray.findClosestGeoPoint(intersections);
     }
 }
