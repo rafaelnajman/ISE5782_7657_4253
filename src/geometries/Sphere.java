@@ -75,7 +75,7 @@ public class Sphere extends Geometry {
         double secondDistance = tm + th;
         if (alignZero(secondDistance) <= 0) return null;
         double firstDistance = tm - th;
-        return firstDistance <= 0 ? List.of(new GeoPoint(this, ray.getPoint(secondDistance))) //
-                : List.of(new GeoPoint(this, ray.getPoint(firstDistance)), new GeoPoint(this, ray.getPoint(secondDistance)));
+        GeoPoint gp2 = new GeoPoint(this, ray.getPoint(secondDistance));
+        return firstDistance <= 0 ? List.of(gp2) : List.of(new GeoPoint(this, ray.getPoint(firstDistance)), gp2);
     }
 }

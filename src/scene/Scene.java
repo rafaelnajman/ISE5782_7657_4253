@@ -11,15 +11,12 @@ import java.util.List;
 public class Scene {
     public String name;
     public Color background = Color.BLACK;
-    public AmbientLight ambientLight;
-    public Geometries geometries;
-    public List<LightSource> lights;
+    public AmbientLight ambientLight = new AmbientLight();
+    public Geometries geometries = new Geometries();
+    public List<LightSource> lights = new LinkedList<>();
 
     public Scene(String name) {
         this.name = name;
-        geometries = new Geometries();
-        lights = new LinkedList<>();
-        ambientLight = new AmbientLight();
     }
 
     public Scene setBackground(Color background) {

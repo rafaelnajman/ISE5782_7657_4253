@@ -3,7 +3,6 @@ package geometries;
 import primitives.*;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Intersectable abstract class defines the intersection method for all the geometries in the scene
@@ -20,7 +19,6 @@ public abstract class Intersectable {
         return geoList == null ? null
                 : geoList.stream().map(gp -> gp.point).toList();
     }
-
 
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersectionsHelper(ray);
@@ -49,9 +47,8 @@ public abstract class Intersectable {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            GeoPoint geoPoint = (GeoPoint) o;
-            return Objects.equals(geometry, geoPoint.geometry) && Objects.equals(point, geoPoint.point);
+            if (!(o instanceof GeoPoint geoPoint)) return false;
+            return geometry == geoPoint.geometry && point.equals(geoPoint.point);
         }
 
         @Override

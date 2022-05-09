@@ -6,20 +6,29 @@ package primitives;
 public class Material {
 
     /**
-     * kD - diffuse coefficient
+     * diffuse coefficient
+     */
+    public Double3 kD = Double3.ZERO;
+    /**
      * kS - specular coefficient
+     */
+    public Double3 kS =  Double3.ZERO;
+    /**
      * kR - reflection coefficient
+     */
+    public Double3 kR =  Double3.ZERO;
+    /**
      * kT - transparency coefficient
      */
-    public Double3  kD = new Double3(0, 0, 0),
-                    kS = new Double3(0, 0, 0),
-                    kR = new Double3(0, 0, 0),
-                    kT = new Double3(0, 0, 0);
-
+    public Double3 kT =  Double3.ZERO;
+    /**
+     * TODO
+     */
     public int nShininess = 0;
 
     /**
      * setter for kD
+     *
      * @param kD new Double3 kD for the material
      * @return this material
      */
@@ -30,6 +39,7 @@ public class Material {
 
     /**
      * setter for kD
+     *
      * @param kD new double kD for the material
      * @return this material
      */
@@ -40,6 +50,7 @@ public class Material {
 
     /**
      * setter for kS
+     *
      * @param kS new Double3 kS for the material
      * @return this material
      */
@@ -50,6 +61,7 @@ public class Material {
 
     /**
      * setter for kS
+     *
      * @param kS new double kS for the material
      * @return this material
      */
@@ -60,6 +72,7 @@ public class Material {
 
     /**
      * setter for kR
+     *
      * @param kR new Double3 kR for the material
      * @return this material
      */
@@ -70,6 +83,7 @@ public class Material {
 
     /**
      * setter for kR
+     *
      * @param kR new double kR for the material
      * @return this material
      */
@@ -80,6 +94,7 @@ public class Material {
 
     /**
      * setter for nShininess
+     *
      * @param nShininess new nShininess for the material
      * @return this material
      */

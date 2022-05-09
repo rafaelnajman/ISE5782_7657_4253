@@ -2,7 +2,6 @@ package primitives;
 import geometries.Intersectable.GeoPoint;
 
 import java.util.List;
-import java.util.Objects;
 
 import static primitives.Util.isZero;
 
@@ -32,11 +31,10 @@ public class Ray {
     /**
      * Constructor that moves the ray by DELTA
      * @param p0 point
-     * @param direction direction
+     * @param direction direction (must be normalized)
      * @param normal normal
      */
     public Ray(Point p0, Vector direction, Vector normal) {
-        direction.normalize();
         Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : - DELTA);
         this.p0 = p0.add(delta);
         this.dir = direction;
@@ -99,7 +97,7 @@ public class Ray {
         if (points == null || points.isEmpty())
             return null;
         GeoPoint closest = null;
-        double minDistance = Double.MAX_VALUE;
+        double minDistance = Double.POSITIVE_INFINITY;
         for (GeoPoint p : points) {
             double distance = p.point.distance(p0);
             if (distance < minDistance) {
@@ -114,8 +112,7 @@ public class Ray {
     @Override
     public boolean equals(Object _object) {
         if (this == _object) return true;
-        if (_object == null || getClass() != _object.getClass()) return false;
-        Ray ray = (Ray) _object;
+        if (!(_object instanceof Ray ray)) return false;
         return p0.equals(ray.p0) && dir.equals(ray.dir);
     }
 

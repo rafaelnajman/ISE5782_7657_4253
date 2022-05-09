@@ -13,7 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 import static java.awt.Color.*;
-import static renderer.XML.sceneParser;
+import static scene.XML.sceneParser;
 import static unittests.renderer.CameraTest.ZERO_POINT;
 
 /**

@@ -4,13 +4,15 @@ import primitives.Color;
 import primitives.Point;
 import primitives.Vector;
 
+import static primitives.Util.alignZero;
+
 /**
  * SpotLight class
  */
 
 public class SpotLight extends PointLight {
 
-    private Vector direction;
+    private final Vector direction;
     private double narrowBeam = 1;
 
     /**
@@ -36,10 +38,10 @@ public class SpotLight extends PointLight {
 
     @Override
     public Color getIntensity(Point point) {
+        double factor = direction.dotProduct(getL(point));
+        if (alignZero(factor) <= 0) return Color.BLACK;
         //check if it is flashlight
-        if (narrowBeam != 1) {
-            return super.getIntensity(point).scale(Math.pow(Math.max(0, direction.dotProduct(getL(point))), narrowBeam));
-        }
-        return super.getIntensity(point).scale(Math.max(0, direction.dotProduct(getL(point))));
+        if (narrowBeam != 1) factor = Math.pow(factor, narrowBeam);
+        return super.getIntensity(point).scale(factor);
     }
 }

@@ -7,7 +7,7 @@ import primitives.*;
  * Interface that shapes extend from it
  */
 public abstract class Geometry extends Intersectable {
-    protected Color emission = Color.BLACK;
+    private Color emission = Color.BLACK;
     private Material material = new Material();
 
     /**

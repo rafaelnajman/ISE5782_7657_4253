@@ -36,7 +36,7 @@ public class Camera {
      *
      * @return the vTo vector
      */
-    public Vector getvTo() {
+    public Vector getVTo() {
         return vTo;
     }
 
@@ -45,7 +45,7 @@ public class Camera {
      *
      * @return the vUp vector
      */
-    public Vector getvUp() {
+    public Vector getVUp() {
         return vUp;
     }
 
@@ -54,7 +54,7 @@ public class Camera {
      *
      * @return the vRight vector
      */
-    public Vector getvRight() {
+    public Vector getVRight() {
         return vRight;
     }
 
@@ -164,12 +164,12 @@ public class Camera {
 
         double yI = -(i - (nY - 1d) / 2) * rY;
         double jX = (j - (nX - 1d) / 2) * rX;
-        Point Pij = pC;
+        Point pIJ = pC;
 
-        if (yI != 0) Pij = Pij.add(vUp.scale(yI));
-        if (jX != 0) Pij = Pij.add(vRight.scale(jX));
+        if (yI != 0) pIJ = pIJ.add(vUp.scale(yI));
+        if (jX != 0) pIJ = pIJ.add(vRight.scale(jX));
 
-        return new Ray(position, Pij.subtract(position));
+        return new Ray(position, pIJ.subtract(position));
     }
 
     /**
@@ -180,12 +180,9 @@ public class Camera {
             throw new MissingResourceException("", "", "Camera is not initialized");
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
-        for (int i = 0; i < imageWriter.getNx(); i++) {
-            for (int j = 0; j < imageWriter.getNy(); j++) {
-                Ray ray = constructRay(nX, nY, j, i);
-                imageWriter.writePixel(j, i, this.castRay(nX, nY, i, j));
-            }
-        }
+        for (int i = 0; i < nX; i++)
+            for (int j = 0; j < nY; j++)
+                imageWriter.writePixel(j, i, this.castRay(nX, nY, j, i));
         return this;
     }
 
@@ -198,8 +195,11 @@ public class Camera {
     public void printGrid(int interval, Color color) {
         if (imageWriter == null)
             throw new MissingResourceException("", "", "Camera is not initialized");
-        for (int i = 0; i < imageWriter.getNx(); i++) {
-            for (int j = 0; j < imageWriter.getNy(); j++) {
+
+        int nX = imageWriter.getNx();
+        int nY = imageWriter.getNy();
+        for (int i = 0; i < nX; i++) {
+            for (int j = 0; j < nY; j++) {
                 if ((i % interval == 0) || (j % interval == 0))
                     imageWriter.writePixel(i, j, color);
             }
@@ -220,13 +220,11 @@ public class Camera {
      *
      * @param nX the x resolution
      * @param nY the y resolution
-     * @param i  the x coordinate
-     * @param j  the y coordinate
+     * @param j  the x coordinate
+     * @param i  the y coordinate
      * @return the color
      */
-    private Color castRay(int nX, int nY, int i, int j) {
-        Ray tempRay = constructRay(nX, nY, j, i);
-        return rayTracer.traceRay(tempRay);
-
+    private Color castRay(int nX, int nY, int j, int i) {
+        return rayTracer.traceRay(constructRay(nX, nY, j, i));
     }
 }
