@@ -76,6 +76,7 @@ public class RayTracerBasic extends RayTracerBase {
         Double3 kr = geoPoint.geometry.getMaterial().kR;
         Double3 kkr = kr.product(k);
         if(kkr > MIN_CALC_COLOR_K ) {
+            
 
         }
         Ray reflectedRay = constructReflectionRay(geoPoint, geoPoint.geometry.getNormal(geoPoint.point), ray.getDir());
