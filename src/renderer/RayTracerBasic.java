@@ -124,7 +124,7 @@ public class RayTracerBasic extends RayTracerBase {
      * function calculates diffusive color
      *
      * @param material material of geometry
-     * @param nl       dot product of normal and light vector
+     * @param nl dot product of normal and light vector
      * @return diffusive color
      */
     private Double3 calcDiffusive(Material material, double nl) {
