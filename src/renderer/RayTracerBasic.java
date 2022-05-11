@@ -56,7 +56,7 @@ public class RayTracerBasic extends RayTracerBase {
                 Double3 ktr = transparency(geoPoint,lightSource, lightVector, normal);
 
                 if (!ktr.product(k).lowerThan(MIN_CALC_COLOR_K)) {
-                    Color lightIntensity = lightSource.getIntensity(geoPoint.point);
+                    Color lightIntensity = lightSource.getIntensity(geoPoint.point).scale(ktr);
                     color = color.add(lightIntensity.scale(calcDiffusive(material, nl)), lightIntensity.scale(calcSpecular(material, normal, lightVector, nl, vector)));
                 }
             }
