@@ -12,15 +12,15 @@ public class Material {
     /**
      * kS - specular coefficient
      */
-    public Double3 kS = Double3.ZERO;
+    public Double3 kS =  Double3.ZERO;
     /**
      * kR - reflection coefficient
      */
-    public Double3 kR = Double3.ZERO;
+    public Double3 kR =  Double3.ZERO;
     /**
      * kT - transparency coefficient
      */
-    public Double3 kT = Double3.ZERO;
+    public Double3 kT =  Double3.ZERO;
     /**
      * TODO
      */
@@ -89,27 +89,6 @@ public class Material {
      */
     public Material setKr(double kR) {
         this.kR = new Double3(kR);
-        return this;
-    }
-
-    /**
-     * setter for kD
-     *
-     * @param kT new Double3 kT for the material
-     * @return this material
-     */
-    public Material setKt(Double3 kT) {
-        this.kT = kT;
-        return this;
-    }
-
-    /**
-     * setter for kT
-     * @param kT new double kT for the material
-     *             @return this material
-     */
-    public Material setKt(double kT) {
-        this.kT = new Double3(kT);
         return this;
     }
 
