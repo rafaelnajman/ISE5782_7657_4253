@@ -30,11 +30,17 @@ public abstract class Intersectable {
      * helper class to connect point to Geometry
      */
     public static class GeoPoint {
+        /**
+         * the geometry
+         */
         public Geometry geometry;
+        /**
+         * the point
+         */
         public Point point;
 
         /**
-         * constructor
+         * constructor of the helper class
          *
          * @param geometry to set
          * @param point    to set
