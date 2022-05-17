@@ -8,12 +8,15 @@ import primitives.*;
 public class PointLight extends Light implements LightSource {
 
     private final Point position;
-    private double kC = 1, kL = 0, kQ = 0;
+    private double kC = 1;
+    private double kL = 0;
+    private double kQ = 0;
 
     /**
      * Constructor that sets the light's intensity.
      *
      * @param intensity the light's intensity.
+     * @param position  the light's position.
      */
     public PointLight(Color intensity, Point position) {
         super(intensity);

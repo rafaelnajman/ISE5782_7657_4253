@@ -1,3 +1,4 @@
+
 package scene;
 
 
@@ -43,29 +44,33 @@ public class XML {
         var geoLst = root.getChildNodes().item(3).getChildNodes();
         //parse the geometries
         Geometries geometries = new Geometries();
-        Point p0;
 
         for (int i = 0; i < geoLst.getLength(); i++) {
             var geo = geoLst.item(i);
-            var el = (Element) geo;
-            switch (geo.getNodeName()) {
-                case "triangle" -> {
-                    p0 = parsePoint(el.getAttribute("p0"));
-                    Point p1 = parsePoint(el.getAttribute("p1"));
-                    Point p2 = parsePoint(el.getAttribute("p2"));
-                    geometries.add(new Triangle(p0, p1, p2));
-                }
-                case "sphere" -> {
-                    Point center = parsePoint(el.getAttribute("center"));
-                    double radius = Integer.parseInt(el.getAttribute("radius"));
-                    geometries.add(new Sphere(center, radius));
-                }
-                case "plane" -> {
-                    p0 = parsePoint(el.getAttribute("point"));
-                    Vector v = parseVector(el.getAttribute("vector"));
-                    geometries.add(new Plane(p0, v));
-                }
+            if (geo.getNodeName() == "triangle") {
+                var el = (Element) geo;
+                Point p0 = parsePoint(el.getAttribute("p0"));
+                Point p1 = parsePoint(el.getAttribute("p1"));
+                Point p2 = parsePoint(el.getAttribute("p2"));
+
+                geometries.add(new Triangle(p0, p1, p2));
             }
+
+            if (geo.getNodeName() == "sphere") {
+                var el = (Element) geo;
+                Point center = parsePoint(el.getAttribute("center"));
+                double radius = Integer.parseInt(el.getAttribute("radius"));
+
+                geometries.add(new Sphere(center, radius));
+            }
+
+            if (geo.getNodeName() == "plane") {
+                var el = (Element) geo;
+                Point p0 = parsePoint(el.getAttribute("point"));
+                Vector v = parseVector(el.getAttribute("vector"));
+                geometries.add(new Plane(p0, v));
+            }
+
         }
         scene.setGeometries(geometries);
     }
@@ -105,4 +110,3 @@ public class XML {
 
     }
 }
-

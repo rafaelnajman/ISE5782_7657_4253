@@ -43,5 +43,26 @@ class RayTest {
         //BV03: Intersection list is empty
         geometries = new Geometries();
         assertNull(ray.findClosestPoint(geometries.findIntersections(ray)));
+
+
+
     }
+    /**
+     * Test method for {@link primitives.Ray#getPoint(double)}.
+     */
+
+    void testGetPoint() {
+        //Equivalence Partitions test ===========================================================
+
+        //EP01: t is not zero
+        Ray ray = new Ray(new Point(0,0,0), new Vector(1,0,0));
+        assertEquals(new Point(1,0,0),ray.getPoint(1));
+
+        //Boundary Values test ==================================================================
+
+        //BV01: t is zero
+        ray = new Ray(new Point(0,0,0), new Vector(1,0,0));
+        assertEquals(new Point(0,0,0),ray.getPoint(0));
+    }
+
 }

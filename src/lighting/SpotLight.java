@@ -19,6 +19,8 @@ public class SpotLight extends PointLight {
      * Constructor that sets the light's intensity.
      *
      * @param intensity the light's intensity.
+     * @param position  the light's position.
+     * @param direction the light's direction.
      */
     public SpotLight(Color intensity, Point position, Vector direction) {
         super(intensity, position);

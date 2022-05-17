@@ -18,7 +18,7 @@ public abstract class RayTracerBase {
     }
 
     /**
-     * function trace ray and return color of closest point
+     * function trace ray and return color of the closest point
      * @param ray ray to trace
      * @return color
      */
