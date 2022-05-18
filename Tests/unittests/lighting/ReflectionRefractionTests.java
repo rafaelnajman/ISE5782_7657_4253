@@ -115,16 +115,29 @@ public class ReflectionRefractionTests {
         scene = new Scene("Test scene");
 
         scene.setAmbientLight(new AmbientLight(new Color(BLUE).reduce(2), new Double3(0.15)));
+        scene.setBackground(new Color(PINK).reduce(3));
 
         scene.geometries.add(
-                new Triangle(new Point(0, 0, 75), new Point(-150, 150, 135), new Point(150, 150, 135)) //
+                new Triangle(new Point(0, 0, -75), new Point(-150, 150, 135), new Point(150, 150, 135)) //
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setKr(0.6).setShininess(60)),
-                new Sphere(new Point(30, 30, -50), 9).setEmission(new Color(RED).reduce(2))
-                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)));//
+                new Triangle(new Point(0, 0, 75), new Point(150, -150, 135), new Point(-150, -150, 135))
+                        .setMaterial(new Material().setKd(0.5).setKs(0.5).setKr(0.6).setShininess(60)),//
+                new Sphere(new Point(25, 40, -50), 20).setEmission(new Color(RED).reduce(2))
+                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(60)),
+                new Sphere(new Point(-20,-10,-100), 30).setEmission(new Color(YELLOW).reduce(2))
+                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setKt(0.5))//
+
+                )
+        ;//
 
         scene.addLight(new DirectionalLight(new Color(WHITE).reduce(2), new Vector(0, 0, 1)));
         scene.addLight(
                 new SpotLight(new Color(YELLOW).reduce(2), new Point(-100, 100, -100), new Vector(0, 0, -1)));
+        scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
+                .setKl(4E-5).setKq(2E-7));
+        scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, -200), new Vector(1, 1, 1)) //
+                .setKl(4E-5).setKq(2E-7));
+        scene.lights.add(new PointLight(new Color(GREEN).reduce(2), new Point(0, 0, -200)));
 
         ImageWriter imageWriter = new ImageWriter("VariousObjects", 600, 600);
         camera.setImageWriter(imageWriter) //

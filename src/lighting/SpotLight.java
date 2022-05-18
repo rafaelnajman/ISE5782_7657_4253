@@ -30,11 +30,11 @@ public class SpotLight extends PointLight {
     /**
      * setter for narrowBeam
      *
-     * @param _narrowBeam the new value for narrowBeam
+     * @param narrowBeam the new value for narrowBeam
      * @return this light
      */
-    public SpotLight setNarrowBeam(double _narrowBeam) {
-        this.narrowBeam = _narrowBeam;
+    public SpotLight setNarrowBeam(double narrowBeam) {
+        this.narrowBeam = narrowBeam;
         return this;
     }
 

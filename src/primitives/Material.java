@@ -22,7 +22,7 @@ public class Material {
      */
     public Double3 kT = Double3.ZERO;
     /**
-     * TODO
+     * n - shininess coefficient
      */
     public int nShininess = 0;
 
