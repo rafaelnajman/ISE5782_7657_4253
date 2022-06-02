@@ -35,6 +35,8 @@ public class XML {
 
         var root = document.getDocumentElement();
 
+
+
         scene.setBackground(parseColor(root.getAttribute("background-color")));
 
         var ambient = (Element) root.getChildNodes().item(1);
@@ -47,27 +49,30 @@ public class XML {
 
         for (int i = 0; i < geoLst.getLength(); i++) {
             var geo = geoLst.item(i);
-            var el = (Element) geo;
-            switch (geo.getNodeName()) {
-                case "triangle" -> {
-                    p0 = parsePoint(el.getAttribute("p0"));
-                    Point p1 = parsePoint(el.getAttribute("p1"));
-                    Point p2 = parsePoint(el.getAttribute("p2"));
-                    geometries.add(new Triangle(p0, p1, p2));
-                }
-                case "sphere" -> {
-                    Point center = parsePoint(el.getAttribute("center"));
-                    double radius = Integer.parseInt(el.getAttribute("radius"));
-                    geometries.add(new Sphere(center, radius));
-                }
-                case "plane" -> {
-                    p0 = parsePoint(el.getAttribute("point"));
-                    Vector v = parseVector(el.getAttribute("vector"));
-                    geometries.add(new Plane(p0, v));
+            if (geo instanceof Element) {
+                var el = (Element) geo;
+
+                switch (geo.getNodeName()) {
+                    case "triangle" -> {
+                        p0 = parsePoint(el.getAttribute("p0"));
+                        Point p1 = parsePoint(el.getAttribute("p1"));
+                        Point p2 = parsePoint(el.getAttribute("p2"));
+                        geometries.add(new Triangle(p0, p1, p2));
+                    }
+                    case "sphere" -> {
+                        Point center = parsePoint(el.getAttribute("center"));
+                        double radius = Integer.parseInt(el.getAttribute("radius"));
+                        geometries.add(new Sphere(center, radius));
+                    }
+                    case "plane" -> {
+                        p0 = parsePoint(el.getAttribute("point"));
+                        Vector v = parseVector(el.getAttribute("vector"));
+                        geometries.add(new Plane(p0, v));
+                    }
                 }
             }
+            scene.setGeometries(geometries);
         }
-        scene.setGeometries(geometries);
     }
 
     /**
