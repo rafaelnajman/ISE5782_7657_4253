@@ -8,6 +8,9 @@ import primitives.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Scene class
+ */
 public class Scene {
     /**
      * name of the scene

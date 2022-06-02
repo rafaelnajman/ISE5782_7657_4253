@@ -233,10 +233,10 @@ public class RayTracerBasic extends RayTracerBase {
         return ray.findClosestGeoPoint(intersections);
     }
 
-    /**
-     * function will return color of point
+   /**
+     * function returns color of point
      * @param geoPoint geometry point to check
-     * @param ray     ray to check
+     * @param ray ray to check
      * @return color of point
      */
     private Color calcColor(GeoPoint geoPoint, Ray ray) {

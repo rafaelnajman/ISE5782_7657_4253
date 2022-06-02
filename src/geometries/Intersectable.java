@@ -50,7 +50,7 @@ public abstract class Intersectable {
         public Point point;
 
         /**
-         * constructor
+         * constructor of the helper class
          *
          * @param geometry to set
          * @param point    to set

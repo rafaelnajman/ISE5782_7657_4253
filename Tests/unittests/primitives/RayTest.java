@@ -43,9 +43,6 @@ class RayTest {
         //BV03: Intersection list is empty
         geometries = new Geometries();
         assertNull(ray.findClosestPoint(geometries.findIntersections(ray)));
-
-
-
     }
     /**
      * Test method for {@link primitives.Ray#getPoint(double)}.
