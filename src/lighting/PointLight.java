@@ -8,12 +8,15 @@ import primitives.*;
 public class PointLight extends Light implements LightSource {
 
     private final Point position;
-    private double kC = 1, kL = 0, kQ = 0;
+    private double kC = 1;
+    private double kL = 0;
+    private double kQ = 0;
 
     /**
      * Constructor that sets the light's intensity.
      *
      * @param intensity the light's intensity.
+     * @param position  the light's position.
      */
     public PointLight(Color intensity, Point position) {
         super(intensity);
@@ -23,33 +26,33 @@ public class PointLight extends Light implements LightSource {
     /**
      * setter for kC
      *
-     * @param _kC - new value for kC
+     * @param kC - new value for kC
      * @return this PointLight for builder pattern
      */
-    public PointLight setKc(double _kC) {
-        kC = _kC;
+    public PointLight setKc(double kC) {
+        this.kC = kC;
         return this;
     }
 
     /**
      * setter for kL
      *
-     * @param _kL - new value for kL
+     * @param kL - new value for kL
      * @return this PointLight for builder pattern
      */
-    public PointLight setKl(double _kL) {
-        kL = _kL;
+    public PointLight setKl(double kL) {
+        this.kL = kL;
         return this;
     }
 
     /**
      * setter for kQ
      *
-     * @param _kQ - new value for kQ
+     * @param kQ - new value for kQ
      * @return this PointLight for builder pattern
      */
-    public PointLight setKq(double _kQ) {
-        kQ = _kQ;
+    public PointLight setKq(double kQ) {
+        this.kQ = kQ;
         return this;
     }
 

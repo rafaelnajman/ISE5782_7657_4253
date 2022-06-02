@@ -33,12 +33,12 @@ public class Plane extends Geometry {
     /**
      * Constructor for plane with normal vector and a point on the plane
      *
-     * @param p0 point on the plane
-     * @param v0 Vector on the plane
+     * @param q0 point on the plane
+     * @param normal Vector on the plane
      */
-    public Plane(Point p0, Vector v0) {
-        q0 = p0;
-        normal = v0.normalize();
+    public Plane(Point q0, Vector normal) {
+        this.q0 = q0;
+        this.normal = normal.normalize();
     }
 
     /**

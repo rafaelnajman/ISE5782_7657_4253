@@ -20,10 +20,20 @@ public abstract class Intersectable {
                 : geoList.stream().map(gp -> gp.point).toList();
     }
 
+    /**
+     * function that returns a list of all intersections of a ray
+     * @param ray the ray to check for intersections
+     * @return a list of all intersections points
+     */
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         return findGeoIntersectionsHelper(ray);
     }
 
+    /**
+     * helper function that returns a list of all intersections of a ray
+     * @param ray the ray to check for intersections
+     * @return a list of all intersections points
+     */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
     /**
@@ -31,11 +41,11 @@ public abstract class Intersectable {
      */
     public static class GeoPoint {
         /**
-         * the geometry
+         * geometry of geoPoint
          */
         public Geometry geometry;
         /**
-         * the point
+         * point of geoPoint
          */
         public Point point;
 

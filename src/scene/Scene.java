@@ -13,28 +13,28 @@ import java.util.List;
  */
 public class Scene {
     /**
-     * Scene name
+     * name of the scene
      */
     public String name;
     /**
-     * Scene background color
+     * color of the background
      */
     public Color background = Color.BLACK;
     /**
-     * Scene ambient light
+     * ambient light of the scene
      */
     public AmbientLight ambientLight = new AmbientLight();
     /**
-     * Scene geometries
+     * list of geometries in the scene
      */
     public Geometries geometries = new Geometries();
     /**
-     * Scene light sources
+     * list of lights in the scene
      */
     public List<LightSource> lights = new LinkedList<>();
 
     /**
-     * constructor for scene
+     * constructor for Scene
      * @param name name of the scene
      */
     public Scene(String name) {
@@ -42,9 +42,9 @@ public class Scene {
     }
 
     /**
-     * add background color to the scene
+     * function sets background color
      * @param background background color
-     * @return scene
+     * @return this
      */
     public Scene setBackground(Color background) {
         this.background = background;
@@ -52,9 +52,9 @@ public class Scene {
     }
 
     /**
-     * add ambient light to the scene
+     * function sets ambient light
      * @param ambientLight ambient light
-     * @return scene
+     * @return this
      */
     public Scene setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
@@ -62,9 +62,9 @@ public class Scene {
     }
 
     /**
-     * add geometries to the scene
-     * @param geometries geometries to add
-     * @return scene
+     * function sets geometries in the scene
+     * @param geometries geometries
+     * @return this
      */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
@@ -72,9 +72,9 @@ public class Scene {
     }
 
     /**
-     * add light to the scene
+     * function adds lights in the scene
      * @param light light to add
-     * @return scene
+     * @return this
      */
     public Scene addLight(LightSource light) {
         lights.add(light);

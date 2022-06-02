@@ -88,17 +88,17 @@ public class Camera {
     /**
      * function that constructs the camera
      *
-     * @param _position the position
-     * @param _vTo      the vTo vector
-     * @param _vUp      the vUp vector
+     * @param position the position
+     * @param vTo      the vTo vector
+     * @param vUp      the vUp vector
      */
-    public Camera(Point _position, Vector _vTo, Vector _vUp) {
-        if (_vTo.dotProduct(_vUp) != 0)
+    public Camera(Point position, Vector vTo, Vector vUp) {
+        if (vTo.dotProduct(vUp) != 0)
             throw new IllegalArgumentException("vTo and vUp must be orthogonal");
-        position = _position;
-        vTo = _vTo.normalize();
-        vUp = _vUp.normalize();
-        vRight = vTo.crossProduct(vUp).normalize();
+        this.position = position;
+        this.vTo = vTo.normalize();
+        this.vUp = vUp.normalize();
+        this.vRight = this.vTo.crossProduct(this.vUp).normalize();
     }
 
     /**
