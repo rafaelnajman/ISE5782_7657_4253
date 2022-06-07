@@ -1,4 +1,4 @@
-package unittests.renderer;
+package unittests.lighting;
 
 import org.junit.jupiter.api.Test;
 
@@ -78,7 +78,17 @@ public class ShadowTests {
 		sphereTriangleHelper("shadowSphereTriangleSpot1", //
 				new Triangle(new Point(-70, -40, 0), new Point(-40, -70, 0), new Point(-68, -68, -4)), //
 				new Point(-88, -88, 120));
+
 	}
+
+	@Test
+	public void sphereTriangleSpot1___() {
+		camera.setAntiAliasingFactor(9);
+		sphereTriangleHelper("shadowSphereTriangleSpot1!!!!!!!!", //
+				new Triangle(new Point(-70, -40, 0), new Point(-40, -70, 0), new Point(-68, -68, -4)), //
+				new Point(-88, -88, 120));
+	}
+
 
 	/**
 	 * Sphere-Triangle shading - move spot even more close

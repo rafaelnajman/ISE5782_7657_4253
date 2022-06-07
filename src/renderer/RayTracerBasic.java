@@ -34,6 +34,18 @@ public class RayTracerBasic extends RayTracerBase {
         return intersections == null ? scene.background : calcColor(ray.findClosestGeoPoint(intersections), ray);
     }
 
+    @Override
+    public Color traceRays(List<Ray> rays) {
+
+        Color color = Color.BLACK;
+        for (Ray ray : rays) {
+            color = color.add(traceRay(ray));
+        }
+        return color.reduce(rays.size());
+
+    }
+
+
     /**
      * function calculates local effects of color on point
      *

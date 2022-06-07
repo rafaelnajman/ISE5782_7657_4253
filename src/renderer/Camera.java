@@ -5,13 +5,15 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.MissingResourceException;
 
 /**
  * camera class
  */
 public class Camera {
-    private Point position;
+    private Point position;//camera location
     private Vector vTo;
     private Vector vUp;
     private Vector vRight;
@@ -20,6 +22,7 @@ public class Camera {
     private double width;
     private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
+    private int antiAliasingFactor = 1;
 
 
     /**
@@ -148,7 +151,41 @@ public class Camera {
     }
 
     /**
-     * function that gets the ray from the camera to the point
+     * function that sets the antiAliasingFactor
+     *
+     * @param antiAliasingFactor value to set
+     * @return camera itself
+     */
+    public Camera setAntiAliasingFactor(int antiAliasingFactor) {
+        this.antiAliasingFactor = antiAliasingFactor;
+        return this;
+    }
+
+    /**
+     * function that calculates the pixels location
+     *
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param i  the x coordinate
+     * @param j  the y coordinate
+     * @return the ray
+     */
+    private Point findPixelLocation(int nX, int nY, int j, int i) {
+
+        double rY = height / nY;
+        double rX = width / nX;
+
+        double yI = -(i - (nY - 1d) / 2) * rY;
+        double jX = (j - (nX - 1d) / 2) * rX;
+        Point pIJ = position.add(vTo.scale(distance));
+
+        if (yI != 0) pIJ = pIJ.add(vUp.scale(yI));
+        if (jX != 0) pIJ = pIJ.add(vRight.scale(jX));
+        return pIJ;
+    }
+
+    /**
+     * function that returns the ray from the camera to the point
      *
      * @param nX the x resolution
      * @param nY the y resolution
@@ -157,20 +194,38 @@ public class Camera {
      * @return the ray
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
-        Point pC = position.add(vTo.scale(distance));
-
-        double rY = height / nY;
-        double rX = width / nX;
-
-        double yI = -(i - (nY - 1d) / 2) * rY;
-        double jX = (j - (nX - 1d) / 2) * rX;
-        Point pIJ = pC;
-
-        if (yI != 0) pIJ = pIJ.add(vUp.scale(yI));
-        if (jX != 0) pIJ = pIJ.add(vRight.scale(jX));
-
-        return new Ray(position, pIJ.subtract(position));
+        return new Ray(position, findPixelLocation(nX, nY, j, i).subtract(position));
     }
+
+    /**
+     * function that returns the rays from the camera to the point
+     *
+     * @param nX the x resolution
+     * @param nY the y resolution
+     * @param i  the x coordinate
+     * @param j  the y coordinate
+     * @return the ray
+     */
+    public List<Ray> constructRays(int nX, int nY, int j, int i) {
+        List<Ray> rays = new LinkedList<>();
+        Point centralPixel = findPixelLocation(nX, nY, j, i);
+        double rY = height / nY / antiAliasingFactor;
+        double rX = width / nX / antiAliasingFactor;
+        double x, y;
+
+        for (int rowNumber = 0; rowNumber < antiAliasingFactor; rowNumber++) {
+            for (int colNumber = 0; colNumber < antiAliasingFactor; colNumber++) {
+                y = -(rowNumber - (antiAliasingFactor - 1d) / 2) * rY;
+                x = (colNumber - (antiAliasingFactor - 1d) / 2) * rX;
+                Point pIJ = centralPixel;
+                if (y != 0) pIJ = pIJ.add(vUp.scale(y));
+                if (x != 0) pIJ = pIJ.add(vRight.scale(x));
+                rays.add(new Ray(position, pIJ.subtract(position)));
+            }
+        }
+        return rays;
+    }
+
 
     /**
      * function that gets the color of the pixel and renders in to image
@@ -225,6 +280,9 @@ public class Camera {
      * @return the color
      */
     private Color castRay(int nX, int nY, int j, int i) {
-        return rayTracer.traceRay(constructRay(nX, nY, j, i));
+        if (antiAliasingFactor == 1)
+            return rayTracer.traceRay(constructRay(nX, nY, j, i));
+        else
+            return rayTracer.traceRays(constructRays(nX, nY, j, i));
     }
 }

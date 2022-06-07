@@ -3,6 +3,8 @@ package renderer;
 import primitives.*;
 import scene.Scene;
 
+import java.util.List;
+
 /**
  * class that holds scene and other functions
  */
@@ -23,4 +25,11 @@ public abstract class RayTracerBase {
      * @return color
      */
     public abstract Color traceRay(Ray ray);
+
+    /**
+     * function that traces rays and return average color of pixel
+     * @param rays rays to trace
+     */
+    public abstract Color traceRays(List<Ray> rays);
+
 }
