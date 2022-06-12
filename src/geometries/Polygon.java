@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import primitives.*;
@@ -93,6 +94,39 @@ public class Polygon extends Geometry {
 
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		Vector v1;
+		Vector v2;
+		Vector n;
+		double t;
+		List<GeoPoint> resultPoints = plane.findGeoIntersections(ray);
+		if (resultPoints == null) // In case there is no intersection with the plane return null
+			return null;
+		boolean positive = true;
+		boolean negative = true;
+		for (int i = 0; i < vertices.size(); i++) {
+			if (i == vertices.size() - 1) {
+				v1 = vertices.get(i).subtract(ray.getP0());
+				v2 = vertices.get(0).subtract(ray.getP0());
+				n = v1.crossProduct(v2).normalize();
+				t = alignZero(n.dotProduct(ray.getDir()));
+			} else {
+				v1 = vertices.get(i).subtract(ray.getP0());
+				v2 = vertices.get(i + 1).subtract(ray.getP0());
+				n = v1.crossProduct(v2).normalize();
+				t = alignZero(n.dotProduct(ray.getDir()));
+			}
+			if (t == 0)
+				return null;
+			if (t * 1 < 0)
+				positive = false;
+			else if (t * -1 < 0)
+				negative = false;
+		}
+		if (negative || positive) {
+			LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
+			result.add(new GeoPoint(this, resultPoints.get(0).point));
+			return result;
+		}
 		return null;
 	}
 }

@@ -29,6 +29,7 @@ public class PointLight extends Light implements LightSource {
      * @param kC - new value for kC
      * @return this PointLight for builder pattern
      */
+    @SuppressWarnings("unused")
     public PointLight setKc(double kC) {
         this.kC = kC;
         return this;

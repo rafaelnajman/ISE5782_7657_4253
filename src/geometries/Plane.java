@@ -55,7 +55,6 @@ public class Plane extends Geometry {
         return normal;
     }
 
-
     @Override
     protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         Vector u;
