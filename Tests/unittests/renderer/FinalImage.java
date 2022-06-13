@@ -46,6 +46,43 @@ public class FinalImage {
     }
 
     /**
+     * render final image with anti-aliasing
+     */
+    @Test
+    public void renderFinalImageWithAntiAliasing() {
+        createRoom();
+        createLights();
+        createTable();
+        createChess();
+        scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), new Double3(0.1)));
+        camera.setImageWriter(new ImageWriter("FinalImageAntiAliasing", 500, 500)) //
+                .setRayTracer(new RayTracerBasic(scene)) //
+                .setAntiAliasingFactor(9)
+                .renderImage() //
+                .writeToImage();
+    }
+
+    /**
+     * render final image with adaptive supersampling
+     */
+    @Test
+    public void renderFinalImageWithAdaptiveSuperSampling() {
+        createRoom();
+        createLights();
+        createTable();
+        createChess();
+        scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), new Double3(0.1)));
+        camera.setImageWriter(new ImageWriter("FinalImageAntiAliasingSuperSampling", 500, 500)) //
+                .setRayTracer(new RayTracerBasic(scene)) //
+                .setUseAdaptive(true)
+                .setMaxAdaptiveLevel(4)
+                .renderImage() //
+                .writeToImage();
+    }
+
+
+
+    /**
      * function creates room
      */
     public void createRoom() {
